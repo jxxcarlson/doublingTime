@@ -5,14 +5,52 @@ text =
     """
 # Doubling Time Calculator
 
-This app computes *doubling times,* a quantity
-that is important in understanding
-epidemics.  Below is an example:
-data for reported cases of
-Coronavius (COVID-19) in France
-taken from [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
+This app computes  the *doubling times.*
+This is a number that is important in understanding
+any quantity that grows exponentially, e.g.,
+bacterial populations or the number of
+infected individuals in the first
+phase of an epidemic, e.g, the Coronavirus
+epidemic.
 
-For additional information, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+The doubling
+time is the time it takes for the quantity
+in question to increase by a
+factor of two. For example,
+if the number of infected
+people on successive days as 1, 2, 4, 8, 16,
+then the doubling time is one day. On the
+other hand, if these
+are the numbers reported every Monday,
+then the doubling time is 7 days.
+
+An epidemic
+with a short doubling time is more dangerous
+and difficult to deal with than one with
+a long doubling time.
+
+To compute the doubling time for a data set,
+simply enter the numbers in the panel on the
+right, separated by commas, and press the button **Doubling Time.**
+To experiment with the sample discussed below, press
+the **Sample data** button.  Data for the
+countries listed on the right are obtained by
+pushing the corresponding button (France, Italy, etc.)
+
+For additional information on the Coronavirus
+epidemic, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+
+
+## Example
+
+![France: Coronavirus](https://en.wikipedia.org/api/rest_v1/page/graph/png/2020_coronavirus_pandemic_in_France/0/d17572fd5eb3b37b9b08940902e20d4202ecdef0.png)
+
+Above is a graph of the number of Coronavirus cases
+reported in France for the period February 25
+to March 11, 2020.  It looks "roughly exponential."
+Below is a table of the reported cases.  The image
+and data are from
+[Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
 
 ````
  n   Date       Cases
@@ -34,21 +72,16 @@ For additional information, see [this article](https://medium.com/@tomaspueyo/co
 15   2020-3-11   1784
 ````
 
-During the first phase of an epidemic,
-the number of cases reported
-typically grows exponentially with time.  The
-*doubling time*  is the number
-of days that it takes for the reported cases to
-double.  The estimated doubling time for
-the data above is 2 days.  For the smaller
-data set 613, 949, 1126, 1412, 1784, it is 2.74
-days.
+The estimated doubling time for
+the data above is 2 days.  It is interesting
+to experiment with subsets of the data e.g., the
+last four cases (613, 949, 1126, 1412, 1784),
+For this set, the doubling times is 2.74
+days.  This result suggests that while
+the epidemic is still growing, it is growing at
+a slower rate.
 
-To compute the doubling time for a data set,
-simply enter the numbers in the panel on the
-right and press the button **Doubling Time.**
-To experiment with the sample data above, press
-the **Sample data** button.
+
 
 ## Understanding exponential growth
 
@@ -59,7 +92,7 @@ the Parable of the Water Lilies. In a far away
 land, there is a magical pond. One the first day
 of Spring, there appears one lily pad,
 fully formed. On the second day, there are two lily pads,
-both fully formed.  On day three, there
+also fully formed.  On day three, there
 are four, again fully formed.  This process
 repeats in the same manner day after day
 until the pond is completely covered. This
@@ -70,6 +103,7 @@ It is worth pondering this question before
 looking at the answer, which you will find
 at the bottom of this document under the topic
 *Water Lilies, Revisited.*
+
 
 ## Methods
 
@@ -95,11 +129,11 @@ Here are two:
 mechanism.  If that assumption does not hold, the
 notion of "doubling time" has no meaning.
 
-2.  Suppose the underlying mechanism is one of exponential
-growth — a "perfect" epidemic, for example, in which every
-case results in two additional cases three days later. But perhaps
-not all cases are detected or reported. Etc.
-
+2. The number of reported cases by a given date may
+be quite different from the actual
+number of cases. Did all sick persons
+see a doctor?  Were all those persons
+properly diagnosed? Etc.
 
 
 ## Water Lilies, Revisited.
@@ -119,10 +153,9 @@ find that 0.7% of the pond is covered.
 
 ## The Moral of the Story
 
-There are many.  But one is worth noting in the context
-of the Coronavirus pandemic. One might be tempted to say "Well, there are
-only a few hundred cases in a country of many millions.
-What's the big deal?"  If the number of cases is small,
+One might be tempted to say "Well, there are
+only a few hundred cases of disease X in a country of
+many millions. What's the big deal?"  If the number of cases is small,
 *and growing exponentially,* then this *is* a big deal:
 it takes a small number of doublings to produce a huge
 increase in cases.  Suppose, for example, that the doubling
@@ -132,7 +165,20 @@ Then after 7 doublings, which takes 2 weeks, there will be
 will be 16,384,000 cases.  Not good!
 
 
+This app is written in [Elm](https://elm-lang.org).  Here is the 
 [Github repo](https://github.com/jxxcarlson/doublingTime)
 
 
+
 """
+
+
+
+--## References
+--
+--[R0, Wikipedia](https://en.wikipedia.org/wiki/Basic_reproduction_number)
+--
+--[James Holland Jones, Notes on R0](https://web.stanford.edu/~jhj1/teachingdocs/Jones-on-R0.pdf)
+--
+--[Unraveling R0](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3935673/)
+-- https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Novel_Coronavirus_SARS-CoV-2.jpg/600px-Novel_Coronavirus_SARS-CoV-2.jpg

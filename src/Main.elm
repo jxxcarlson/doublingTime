@@ -244,6 +244,7 @@ dataSummary model =
                         Just dt ->
                             "doubling time = "
                                 ++ String.fromFloat (Compute.roundTo 2 dt)
+                                ++ " days"
 
                 message =
                     String.join ", " [ dataPoints, doubling ]
