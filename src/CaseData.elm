@@ -7,6 +7,7 @@ type alias CaseData =
     , sourceLink : String
     , sourceName : String
     , country : String
+    , note : String
     }
 
 
@@ -20,6 +21,7 @@ france =
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2"
     , sourceName = "Wikipedia"
     , country = "France"
+    , note = "Feb 25 to Mar 10, 2020"
     }
 
 
@@ -50,4 +52,5 @@ italy =
     , sourceLink = "https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Italy_medical_cases"
     , sourceName = "Wikipedia"
     , country = "Italy"
+    , note = "Feb 2 to Mar 11, 2020"
     }

@@ -139,13 +139,13 @@ rightColumn model =
         g =
             0.9
     in
-    column [ alignTop, Background.color (Element.rgb g g g), padding 20, Font.size 14, width (px 200), height (px 680), spacing 10 ]
+    column [ alignTop, Background.color (Element.rgb g g g), padding 20, Font.size 14, width (px 300), height (px 680), spacing 10 ]
         (List.map (casesForCountry model) CaseData.cases)
 
 
 casesForCountry : Model -> CaseData -> Element Msg
 casesForCountry model caseData =
-    loadCountryButton model caseData.country
+    row [ spacing 15 ] [ loadCountryButton model caseData.country, el [] (text caseData.note) ]
 
 
 loadCountryButton : Model -> String -> Element Msg
