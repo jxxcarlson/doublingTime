@@ -12,16 +12,16 @@ type alias CaseData =
 
 
 cases =
-    [ france, italy ]
+    [ france, italy, usa ]
 
 
 france =
     { startDate = "2020-2-25"
-    , cases = [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784 ]
+    , cases = [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784, 2281 ]
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2"
     , sourceName = "Wikipedia"
     , country = "France"
-    , note = "Feb 25 to Mar 10, 2020"
+    , note = "Feb 25 to Mar 11, 2020"
     }
 
 
@@ -53,4 +53,14 @@ italy =
     , sourceName = "Wikipedia"
     , country = "Italy"
     , note = "Feb 21 to Mar 11, 2020"
+    }
+
+
+usa =
+    { startDate = "2020-2-27"
+    , cases = [ 15, 19, 24, 42, 57, 85, 111, 175, 252, 352, 495, 643, 932, 1200 ]
+    , sourceName = "Wikipedia"
+    , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_States"
+    , country = "USA"
+    , note = "Feb 27 to Mar 11, 2020"
     }

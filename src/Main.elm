@@ -188,6 +188,7 @@ middleColumn model =
         [ column [ centerX, spacing 10 ]
             [ textInput model
             , dataSummary model
+            , dataSummaryByWeek model
             , row [ spacing 10 ] [ computeButton, clearButton, getSampleButton ]
             ]
         ]
@@ -240,12 +241,39 @@ dataSummary model =
                         Nothing ->
                             "Bad data, could not compute doubling time"
 
-                        Just dd ->
+                        Just dt ->
                             "doubling time = "
-                                ++ String.fromFloat (Compute.roundTo 2 dd.doublingTime)
+                                ++ String.fromFloat (Compute.roundTo 2 dt)
 
                 message =
                     String.join ", " [ dataPoints, doubling ]
+            in
+            Element.el [ Font.size 14, Font.color (Element.rgb 0.8 0 0) ] (text message)
+
+
+dataSummaryByWeek : Model -> Element Msg
+dataSummaryByWeek model =
+    case model.timeSeries of
+        Nothing ->
+            Element.el [ Font.size 14 ] (text "---")
+
+        Just data ->
+            let
+                display x_ =
+                    case x_ of
+                        Nothing ->
+                            " - "
+
+                        Just x ->
+                            Compute.roundTo 2 x |> String.fromFloat
+
+                doublingTimes =
+                    Compute.doublingTimes data
+                        |> List.map display
+                        |> String.join ", "
+
+                message =
+                    "Doubling times by week: " ++ doublingTimes
             in
             Element.el [ Font.size 14, Font.color (Element.rgb 0.8 0 0) ] (text message)
 
@@ -288,7 +316,7 @@ getSampleButton =
 
 
 textInput model =
-    Input.multiline [ width (px 400), height (px 557), Font.size 14 ]
+    Input.multiline [ width (px 400), height (px 533), Font.size 14 ]
         { onChange = GotText
         , text = model.data
         , placeholder = Nothing

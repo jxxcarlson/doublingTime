@@ -1,5 +1,15 @@
-module Compute exposing (doublingTime, e, france20200225DataAsString, logStatistics, mean, roundTo, timeSeries)
+module Compute exposing
+    ( doublingTime
+    , doublingTimes
+    , e
+    , france20200225DataAsString
+    , logStatistics
+    , mean
+    , roundTo
+    , timeSeries
+    )
 
+import List.Extra
 import Maybe.Extra
 import Stat exposing (Statistics)
 
@@ -51,7 +61,37 @@ exponentialError m b data =
         |> (\x -> x / nRoot)
 
 
-doublingTime : List Float -> Maybe { doublingTime : Float, r2 : Float, error : Float }
+doublingTimes : List Float -> List (Maybe Float)
+doublingTimes timeSeries_ =
+    let
+        n =
+            List.length timeSeries_
+
+        nGroups =
+            n // 7
+
+        remainder =
+            n - (7 * nGroups)
+
+        data =
+            List.drop remainder timeSeries_
+
+        head_ =
+            List.take remainder data |> doublingTime
+
+        tail =
+            List.Extra.groupsOf 7 data
+                |> List.map doublingTime
+    in
+    case head_ of
+        Nothing ->
+            tail
+
+        Just head ->
+            Just head :: tail
+
+
+doublingTime : List Float -> Maybe Float
 doublingTime timeSeries_ =
     case logStatistics timeSeries_ of
         Nothing ->
@@ -61,14 +101,8 @@ doublingTime timeSeries_ =
             let
                 k =
                     stats.m
-
-                data =
-                    timeSeries_ |> List.indexedMap (\i y -> ( toFloat i, y ))
-
-                error =
-                    exponentialError stats.m stats.b data
             in
-            Just <| { doublingTime = logBase e 2.0 / k, r2 = stats.r2, error = error }
+            Just <| logBase e 2.0 / k
 
 
 mean : List Float -> Maybe Float
