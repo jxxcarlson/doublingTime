@@ -12,6 +12,8 @@ data for reported cases of
 Coronavius (COVID-19) in France
 taken from [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
 
+For additional information, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+
 ````
  n   Date       Cases
  --------------------
