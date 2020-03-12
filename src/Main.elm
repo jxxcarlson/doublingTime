@@ -75,13 +75,13 @@ update msg model =
             { model | data = str }
 
         Clear ->
-            { model | data = "", timeSeries = Nothing }
+            { model | data = "", timeSeries = Nothing, country = Nothing }
 
         LoadCountry country ->
             loadCountry country model
 
         SampleData ->
-            { model | data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
+            { model | country = Nothing, data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
 
         MarkdownMsg _ ->
             model
