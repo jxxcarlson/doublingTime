@@ -35,7 +35,23 @@ logStatistics timeSeries_ =
     statistics (List.map (logBase e) timeSeries_)
 
 
-doublingTime : List Float -> Maybe Float
+exponentialError : Float -> Float -> List ( Float, Float ) -> Float
+exponentialError m b data =
+    let
+        f t =
+            e ^ (m * t + b)
+
+        nRoot =
+            data |> List.length |> toFloat |> sqrt
+    in
+    List.map (\( t, y ) -> f t - y) data
+        |> List.map (\x -> x * x)
+        |> List.sum
+        |> sqrt
+        |> (\x -> x / nRoot)
+
+
+doublingTime : List Float -> Maybe { doublingTime : Float, r2 : Float, error : Float }
 doublingTime timeSeries_ =
     case logStatistics timeSeries_ of
         Nothing ->
@@ -45,8 +61,14 @@ doublingTime timeSeries_ =
             let
                 k =
                     stats.m
+
+                data =
+                    timeSeries_ |> List.indexedMap (\i y -> ( toFloat i, y ))
+
+                error =
+                    exponentialError stats.m stats.b data
             in
-            Just <| logBase e 2.0 / k
+            Just <| { doublingTime = logBase e 2.0 / k, r2 = stats.r2, error = error }
 
 
 mean : List Float -> Maybe Float

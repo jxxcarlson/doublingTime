@@ -131,8 +131,8 @@ markdownText model =
         , HA.style "overflow" "scroll"
         , HA.style "white-space" "normal"
         , HA.style "margin" "20px"
-        , HA.style "font-size" "12px"
-        , HA.style "line-height" "15px"
+        , HA.style "font-size" "11px"
+        , HA.style "line-height" "18px"
         ]
         [ Markdown.Render.toHtml ExtendedMath Strings.text
             |> Html.map MarkdownMsg
@@ -153,16 +153,17 @@ dataSummary model =
                 dataPoints =
                     n ++ " data points"
 
-                doublingTime =
+                doublingTimeData =
                     Compute.doublingTime data
 
                 doubling =
-                    case doublingTime of
+                    case doublingTimeData of
                         Nothing ->
                             "Bad data, could not compute doubling time"
 
-                        Just dt ->
-                            "doubling time = " ++ String.fromFloat (Compute.roundTo 2 dt) ++ " days"
+                        Just dd ->
+                            "doubling time = "
+                                ++ String.fromFloat (Compute.roundTo 2 dd.doublingTime)
 
                 message =
                     String.join ", " [ dataPoints, doubling ]

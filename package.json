@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "elm-live -p 8009 src/Main.elm"
+    "start": "elm-live -p 8009 -d public/ src/Main.elm -- --output public/Main.js",
+    "publish": "sh script/publish.sh",
+    "go": "open -a /Applications/Firefox.app/ https://jxxcarlson.github.io/app/doubling/index.html"
   },
   "keywords": [],
   "author": "",
