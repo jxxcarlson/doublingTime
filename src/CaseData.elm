@@ -52,5 +52,5 @@ italy =
     , sourceLink = "https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Italy_medical_cases"
     , sourceName = "Wikipedia"
     , country = "Italy"
-    , note = "Feb 2 to Mar 11, 2020"
+    , note = "Feb 21 to Mar 11, 2020"
     }
