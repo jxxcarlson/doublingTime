@@ -29,6 +29,7 @@ main =
 type alias Model =
     { counter : Int
     , data : String
+    , country : Maybe String
     , timeSeries : Maybe (List Float)
     , statistics : Maybe Statistics
     }
@@ -38,6 +39,7 @@ init : Model
 init =
     { counter = 0
     , data = ""
+    , country = Nothing
     , timeSeries = Nothing
     , statistics = Nothing
     }
@@ -101,10 +103,13 @@ loadCountry country model =
 
         Just countryCases ->
             let
+                cd =
+                    countryCases.cases
+
                 data =
-                    countryCases.cases |> List.map String.fromFloat |> String.join ", "
+                    cd |> List.map String.fromFloat |> String.join ", "
             in
-            { model | data = data, timeSeries = Compute.timeSeries data }
+            { model | country = Just countryCases.country, data = data, timeSeries = Compute.timeSeries data }
 
 
 
@@ -135,18 +140,32 @@ rightColumn model =
             0.9
     in
     column [ alignTop, Background.color (Element.rgb g g g), padding 20, Font.size 14, width (px 200), height (px 680), spacing 10 ]
-        (List.map casesForCountry CaseData.cases)
+        (List.map (casesForCountry model) CaseData.cases)
 
 
-casesForCountry : CaseData -> Element Msg
-casesForCountry caseData =
-    loadCountryButton caseData.country
+casesForCountry : Model -> CaseData -> Element Msg
+casesForCountry model caseData =
+    loadCountryButton model caseData.country
 
 
-loadCountryButton : String -> Element Msg
-loadCountryButton country =
-    row (buttonStyle2 100)
-        [ Input.button buttonStyle
+loadCountryButton : Model -> String -> Element Msg
+loadCountryButton model country =
+    let
+        color =
+            case model.country of
+                Nothing ->
+                    Element.rgb 0 0 0
+
+                Just targetCountry ->
+                    case targetCountry == country of
+                        True ->
+                            Element.rgb 0.8 0 0
+
+                        False ->
+                            Element.rgb 0 0 0
+    in
+    row (buttonStyle2 100 color)
+        [ Input.button (buttonStyle2 100 color)
             { onPress = Just (LoadCountry country)
             , label = el [ centerX, centerY ] (text country)
             }
@@ -284,11 +303,11 @@ indicatorStyle =
     ]
 
 
-buttonStyle2 w =
+buttonStyle2 w color =
     [ paddingXY 8 2
     , height <| px 30
     , width <| px w
-    , Background.color (rgb255 120 120 120)
+    , Background.color color
     , Font.color (rgb255 240 240 240)
     , Font.size 14
     ]
