@@ -6,8 +6,9 @@ text =
 # Doubling Time Calculator
 
 This app computes *doubling times,* a quantity
-that is important in understanding epidemics.
-Below is an example: data for reported cases of
+that is important in understanding
+epidemics.  Below is an example:
+data for reported cases of
 Coronavius (COVID-19) in France
 taken from [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
 
