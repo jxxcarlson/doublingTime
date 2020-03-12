@@ -4,6 +4,7 @@ module Main exposing (Model, Msg(..), buttonStyle, computeButton, indicator, ind
 -}
 
 import Browser
+import CaseData exposing (CaseData)
 import Compute
 import Element exposing (..)
 import Element.Background as Background
@@ -51,6 +52,7 @@ type Msg
     | GotText String
     | SampleData
     | Clear
+    | LoadCountry String
     | MarkdownMsg MarkdownMsg
 
 
@@ -73,11 +75,36 @@ update msg model =
         Clear ->
             { model | data = "", timeSeries = Nothing }
 
+        LoadCountry country ->
+            loadCountry country model
+
         SampleData ->
             { model | data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
 
         MarkdownMsg _ ->
             model
+
+
+
+-- HELPERS
+
+
+loadCountry : String -> Model -> Model
+loadCountry country model =
+    let
+        countryCases_ =
+            List.filter (\data -> data.country == country) CaseData.cases |> List.head
+    in
+    case countryCases_ of
+        Nothing ->
+            model
+
+        Just countryCases ->
+            let
+                data =
+                    countryCases.cases |> List.map String.fromFloat |> String.join ", "
+            in
+            { model | data = data, timeSeries = Compute.timeSeries data }
 
 
 
@@ -93,14 +120,40 @@ view model =
     Element.layout [ Background.color <| Element.rgb g g g ] (mainColumn model)
 
 
+mainColumn : Model -> Element Msg
 mainColumn model =
     row [ spacing 20, paddingXY 40 40 ]
         [ leftColumn model
+        , middleColumn model
         , rightColumn model
         ]
 
 
 rightColumn model =
+    let
+        g =
+            0.9
+    in
+    column [ alignTop, Background.color (Element.rgb g g g), padding 20, Font.size 14, width (px 200), height (px 550), spacing 10 ]
+        (List.map casesForCountry CaseData.cases)
+
+
+casesForCountry : CaseData -> Element Msg
+casesForCountry caseData =
+    loadCountryButton caseData.country
+
+
+loadCountryButton : String -> Element Msg
+loadCountryButton country =
+    row (buttonStyle2 100)
+        [ Input.button buttonStyle
+            { onPress = Just (LoadCountry country)
+            , label = el [ centerX, centerY ] (text country)
+            }
+        ]
+
+
+middleColumn model =
     let
         g =
             0.9
@@ -228,6 +281,16 @@ indicatorStyle =
     , Background.color (rgb255 40 40 40)
     , Font.color (rgb255 255 0 0)
     , Font.size 50
+    ]
+
+
+buttonStyle2 w =
+    [ paddingXY 8 2
+    , height <| px 30
+    , width <| px w
+    , Background.color (rgb255 120 120 120)
+    , Font.color (rgb255 240 240 240)
+    , Font.size 14
     ]
 
 
