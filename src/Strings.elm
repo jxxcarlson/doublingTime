@@ -165,8 +165,56 @@ Then after 7 doublings, which takes 2 weeks, there will be
 will be 16,384,000 cases.  Not good!
 
 
+## Technical Stuff
+
+Let $N(t)$ be the cumulative number of cases recorded as of time $t$,
+where $t = 0, 1, 2, ...$ is the number of days after the date
+of the first set of cases reported.  Consider
+the data $n(t) = \\log N(t)$. Let $n = mt + b$ be the
+"line of best fit" obtained by the least squares method.
+Then
+
+$$
+\\hat N(t) = e^{mt + b} = e^{mt}N(0)
+$$
+
+is a function which "best fits" the data. To find the
+doubling time $\\Delta t$, solve the equation
+
+$$
+2N(0) = e^{m\\Delta t}N(0)
+$$
+
+to obtain
+
+$$
+\\Delta t = \\frac{\\log 2}{m}
+$$
+
+**Remark.** The sequence of numbers
+
+$$
+\\hat N(0), \\hat N(1), \\hat N(2), \\cdots
+$$
+
+is a geometric progression
+with common ratio $c = e^m$. This is because
+
+$$
+\\frac{\\hat N(t+1)}{\\hat N(t)} = \\frac{e^{m(t+1)}\\hat N(0)}{e^{mt}\\hat N(0)} = e^m
+$$
+
+
+
+
+
+
+
+## Notes
+
 This app is written in [Elm](https://elm-lang.org).  Here is the 
-[Github repo](https://github.com/jxxcarlson/doublingTime)
+[Github repo](https://github.com/jxxcarlson/doublingTime). If you
+have a comment, contact jxxcarlson@gmail.com (James Carlson)
 
 
 
