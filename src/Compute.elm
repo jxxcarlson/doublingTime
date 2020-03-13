@@ -1,5 +1,6 @@
 module Compute exposing
-    ( doublingTime
+    ( commonRatio
+    , doublingTime
     , doublingTimes
     , e
     , france20200225DataAsString
@@ -59,6 +60,11 @@ exponentialError m b data =
         |> List.sum
         |> sqrt
         |> (\x -> x / nRoot)
+
+
+commonRatio : Float -> Float
+commonRatio doublingTime_ =
+    e ^ (logBase e 2.0 / doublingTime_)
 
 
 doublingTimes : List Float -> List (Maybe Float)

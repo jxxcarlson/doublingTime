@@ -43,43 +43,46 @@ epidemic, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-toda
 
 ## Example
 
-![France: Coronavirus](https://en.wikipedia.org/api/rest_v1/page/graph/png/2020_coronavirus_pandemic_in_France/0/d17572fd5eb3b37b9b08940902e20d4202ecdef0.png)
+![France: Coronavirus](http://jxxcarlson.s3.amazonaws.com/covid-19-france.png)
 
 Above is a graph of the number of Coronavirus cases
 reported in France for the period February 25
-to March 11, 2020.  It looks "roughly exponential."
+to March 12, 2020.  It looks "roughly exponential."
 Below is a table of the reported cases.  The image
 and data are from
 [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
 
 ````
- n   Date       Cases
- --------------------
- 1   2020-2-25     13
- 2   2020-2-26     18
- 3   2020-2-27     38
- 4   2020-2-28     57
- 5   2020-2-29    100
- 6   2020-3-1     130
- 7   2020-3-2     191
- 8   2020-3-3     212
- 9   2020-3-4     285
-10   2020-3-5     423
-11   2020-3-6     613
-12   2020-3-7     949
-13   2020-3-9    1126
-14   2020-3-10   1412
-15   2020-3-11   1784
+ n   Date       Cases   Increase
+ -------------------------------
+ 1   2020-2-25     13    --
+ 2   2020-2-26     18    38%
+ 3   2020-2-27     38   111%
+ 4   2020-2-28     57    50%
+ 5   2020-2-29    100    15%
+ 6   2020-3-1     130    30%
+ 7   2020-3-2     191    47%
+ 8   2020-3-3     212    10%
+ 9   2020-3-4     285    34%
+10   2020-3-5     423    68%
+11   2020-3-6     613    45%
+12   2020-3-7     949    55%
+13   2020-3-8    1126    19%
+14   2020-3-9    1412    25%
+15   2020-3-10   1784    26%
+16   2020-3-11   2281    28%
+17   2020-3-12   2876    26%
 ````
 
 The estimated doubling time for
-the data above is 2 days.  It is interesting
+the data above is 2.1 days.  It is interesting
 to experiment with subsets of the data e.g., the
-last four cases (613, 949, 1126, 1412, 1784),
-For this set, the doubling times is 2.74
+last week's worth of cases (613, 949, 1126, 1412, 1784, 2281, 287).
+For this set, the doubling times is 2.83
 days.  This result suggests that while
 the epidemic is still growing, it is growing at
-a slower rate.
+a slower rate.  That is good news.  But a growth
+rate of zero is still better.
 
 
 

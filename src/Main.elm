@@ -246,6 +246,8 @@ dataSummary model =
                                 ++ String.fromFloat (Compute.roundTo 2 dt)
                                 ++ " days"
 
+                --++ " -- common ratio = "
+                --++ (String.fromFloat <| Compute.roundTo 2 (Compute.commonRatio dt))
                 message =
                     String.join ", " [ dataPoints, doubling ]
             in

@@ -17,11 +17,11 @@ cases =
 
 france =
     { startDate = "2020-2-25"
-    , cases = [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784, 2281 ]
+    , cases = [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784, 2281, 2876 ]
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2"
     , sourceName = "Wikipedia"
     , country = "France"
-    , note = "Feb 25 to Mar 11, 2020"
+    , note = "Feb 25 to Mar 12, 2020"
     }
 
 
