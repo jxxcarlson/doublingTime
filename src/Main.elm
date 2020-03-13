@@ -147,7 +147,7 @@ casesForCountry : Model -> CaseData -> Element Msg
 casesForCountry model caseData =
     row [ spacing 15 ]
         [ loadCountryButton model caseData.country
-        , el [ width (px 130), Font.size 13 ] (text caseData.note)
+        , el [ width (px 140), Font.size 13 ] (text caseData.note)
         , link [ width (px 100), Font.color (Element.rgb 0 0 0.8) ]
             { url = caseData.sourceLink
             , label = text "Source"
@@ -198,7 +198,6 @@ leftColumn model =
     column
         [ Background.color (Element.rgb 1.0 1.0 1.0)
         , alignTop
-        , Font.size 14
         , padding 20
         ]
         [ markdownText model |> Element.html ]
@@ -243,11 +242,11 @@ dataSummary model =
 
                         Just dt ->
                             "doubling time = "
-                                ++ String.fromFloat (Compute.roundTo 2 dt)
+                                ++ String.fromFloat (Compute.roundTo 1 dt)
                                 ++ " days"
 
                 --++ " -- common ratio = "
-                --++ (String.fromFloat <| Compute.roundTo 2 (Compute.commonRatio dt))
+                --++ (String.fromFloat <| Compute.roundTo 1 (Compute.commonRatio dt))
                 message =
                     String.join ", " [ dataPoints, doubling ]
             in
@@ -268,7 +267,7 @@ dataSummaryByWeek model =
                             " - "
 
                         Just x ->
-                            Compute.roundTo 2 x |> String.fromFloat
+                            Compute.roundTo 1 x |> String.fromFloat
 
                 doublingTimes =
                     Compute.doublingTimes data

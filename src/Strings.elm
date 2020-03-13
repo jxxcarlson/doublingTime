@@ -36,6 +36,8 @@ To experiment with the sample discussed below, press
 the **Sample data** button.  Data for the
 countries listed on the right are obtained by
 pushing the corresponding button (France, Italy, etc.)
+An asterisk next to a country means that linear interpolation
+was used to fill in missing values.
 
 For additional information on the Coronavirus
 epidemic, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
