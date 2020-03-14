@@ -8,7 +8,7 @@ text =
 This app computes  the *doubling times.*
 This is a number that is important in understanding
 any quantity that grows exponentially, e.g.,
-bacterial populations or the number of
+[bacterial populations](https://vlab.amrita.edu/?sub=3&brch=73&sim=1105&cnt=1) or the number of
 infected individuals in the first
 phase of an epidemic, e.g, the Coronavirus
 epidemic.
@@ -93,15 +93,18 @@ rate of zero is still better.
 We human beings, even if we understand the
 mathematics, have a poor intuitive understanding
 of exponential growth.  Consider for example,
-the Parable of the Water Lilies. In a far away
-land, there is a magical pond. One the first day
+the Parable of the Water Lilies.
+
+> *In a far away
+land, there is a magical pond. On the first day
 of Spring, there appears one lily pad,
 fully formed. On the second day, there are two lily pads,
 also fully formed.  On day three, there
-are four, again fully formed.  This process
-repeats in the same manner day after day
-until the pond is completely covered. This
-happens on the 48th day.  The question:
+are four.  And so on, until the pond is
+completely covered. This
+happens on the 48th day.*
+
+The question:
 *on which day is the pond half covered?*
 
 It is worth pondering this question before
@@ -126,8 +129,8 @@ by the slope.
 ## Cautions
 
 There are various cautions that one should
-exercise in using any curve-fitting program.
-Here are two:
+exercise in using any
+curve-fitting program. Here are two:
 
 
 1.  We assume exponential growth in the underlying
@@ -210,10 +213,48 @@ $$
 $$
 
 
+## Remarks on Bacteria
+
+We mentioned that bacterial populations
+under the right conditions can grow
+exponentially. Consider culture of bacteria
+in a nutrient broth.  Let $N(t)$ be the population
+ at time $t$.  A plot  of $\\log N(t)$  versus $t$,
+will look somewhat like the one below:
+
+![Bacterial Growth](http://textbookofbacteriology.net/growthcurve.jpeg)
+
+This is taken from
+[Todar's Online Textbook of Biology](http://textbookofbacteriology.net/growth_3.html). The phases of the culture are as follows
+
+- **Lag.**  Cells working away, growing, but not yet dividing.
+
+- **Exponential.** Unconstrained cell division, adequate nutrients.
+
+- **Stationary.** Environment running out resources, e.g. space, nutrients, accumulation of waste products; cell division stopped.
+
+-  **Death.**  As in (3), but worse.  Population enters exponential decline.
+
+The main point: exponential growth applies to one phase of the lifetime of the
+bacterial population.
 
 
+## Remarks on Epidemics
 
+As with bacteria, there is an exponential  growth phase,
+and as with bacteria,
+it does not last indefinitely. Growth in number of infected
+persons decreases as the number of susceptible individuals
+decreases through one of the following mechanism:
 
+- Death
+
+- Infection
+
+- Recovery: an infected individual who recovers acquires immunity and cannot be infected again.
+
+When there are no more susceptible individuals, the epidemic ends.
+Again, exponential growth applies only in the early phase.
 
 ## Notes
 
