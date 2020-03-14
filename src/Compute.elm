@@ -2,7 +2,6 @@ module Compute exposing
     ( commonRatio
     , doublingTime
     , doublingTimes
-    , e
     , france20200225DataAsString
     , logStatistics
     , mean
@@ -13,10 +12,6 @@ module Compute exposing
 import List.Extra
 import Maybe.Extra
 import Stat exposing (Statistics)
-
-
-e =
-    2.7138
 
 
 france20200225DataAsString =
@@ -43,14 +38,14 @@ statistics timeSeries_ =
 
 logStatistics : List Float -> Maybe Statistics
 logStatistics timeSeries_ =
-    statistics (List.map (logBase e) timeSeries_)
+    statistics (List.map (logBase Basics.e) timeSeries_)
 
 
 exponentialError : Float -> Float -> List ( Float, Float ) -> Float
 exponentialError m b data =
     let
         f t =
-            e ^ (m * t + b)
+            Basics.e ^ (m * t + b)
 
         nRoot =
             data |> List.length |> toFloat |> sqrt
@@ -64,7 +59,7 @@ exponentialError m b data =
 
 commonRatio : Float -> Float
 commonRatio doublingTime_ =
-    e ^ (logBase e 2.0 / doublingTime_)
+    Basics.e ^ (logBase Basics.e 2.0 / doublingTime_)
 
 
 doublingTimes : List Float -> List (Maybe Float)
@@ -108,7 +103,7 @@ doublingTime timeSeries_ =
                 k =
                     stats.m
             in
-            Just <| logBase e 2.0 / k
+            Just <| logBase Basics.e 2.0 / k
 
 
 mean : List Float -> Maybe Float
