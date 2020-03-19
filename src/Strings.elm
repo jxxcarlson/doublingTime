@@ -36,8 +36,7 @@ To experiment with the sample discussed below, press
 the **Sample data** button.  Data for the
 countries listed on the right are obtained by
 pushing the corresponding button (France, Italy, etc.)
-An asterisk next to a country means that linear interpolation
-was used to fill in missing values. For a different view
+ For a different view
 of the data, press the **Data** tab above.
 
 *If weekly doubling times are getting longer and longer, this is a

@@ -153,7 +153,7 @@ southKorea =
     , sourceName = "Wikipedia"
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_South_Korea"
     , country = "South Korea"
-    , note = "Jan 20 to Mar 18, 2020 (*)"
+    , note = "Jan 20 to Mar 18, 2020"
     }
 
 
