@@ -5,13 +5,13 @@ text =
     """
 # Doubling Time Calculator
 
-This app computes  the *doubling times.*
+This app computes  *doubling times.*
 This is a number that is important in understanding
 any quantity that grows exponentially, e.g.,
 [bacterial populations](https://vlab.amrita.edu/?sub=3&brch=73&sim=1105&cnt=1) or the number of
 infected individuals in the first
-phase of an epidemic, e.g, the Coronavirus
-epidemic.
+phase of an epidemic, e.g, the
+[the Coronavirus epidemic](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca).
 
 The doubling
 time is the time it takes for the quantity
@@ -37,10 +37,8 @@ the **Sample data** button.  Data for the
 countries listed on the right are obtained by
 pushing the corresponding button (France, Italy, etc.)
 An asterisk next to a country means that linear interpolation
-was used to fill in missing values.
-
-For additional information on the Coronavirus
-epidemic, see [this article](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+was used to fill in missing values. For a different view
+of the data, press the **Data** tab above.
 
 
 ## Example
@@ -79,8 +77,8 @@ and data are from
 The estimated doubling time for
 the data above is 2.1 days.  It is interesting
 to experiment with subsets of the data e.g., the
-last week's worth of cases (613, 949, 1126, 1412, 1784, 2281, 287).
-For this set, the doubling times is 2.83
+last week's worth of cases ( 613, 949, 1126, 1412, 1784, 2281, 2876).
+For this set, the doubling times is 2.8
 days.  This result suggests that while
 the epidemic is still growing, it is growing at
 a slower rate.  That is good news.  But a growth
@@ -219,7 +217,7 @@ We mentioned that bacterial populations
 under the right conditions can grow
 exponentially. Consider culture of bacteria
 in a nutrient broth.  Let $N(t)$ be the population
- at time $t$.  A plot  of $\\log N(t)$  versus $t$,
+ at time $t$.  A plot  of $\\log N(t)$  versus $t$
 will look somewhat like the one below:
 
 ![Bacterial Growth](http://textbookofbacteriology.net/growthcurve.jpeg)
@@ -243,7 +241,7 @@ bacterial population.
 
 As with bacteria, there is an exponential  growth phase,
 and as with bacteria,
-it does not last indefinitely. Growth in number of infected
+it does not last indefinitely. Growth in the number of infected
 persons decreases as the number of susceptible individuals
 decreases through one of the following mechanism:
 
@@ -253,8 +251,8 @@ decreases through one of the following mechanism:
 
 - Recovery: an infected individual who recovers acquires immunity and cannot be infected again.
 
-When there are no more susceptible individuals, the epidemic ends.
-Again, exponential growth applies only in the early phase.
+When there are no more susceptible individuals,
+the epidemic ends. Again, exponential growth applies only in the early phase.
 
 ## Notes
 

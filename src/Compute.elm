@@ -1,10 +1,14 @@
 module Compute exposing
-    ( commonRatio
+    ( Datum
+    , commonRatio
+    , dataItems
+    , delta
     , doublingTime
     , doublingTimes
     , france20200225DataAsString
     , logStatistics
     , mean
+    , relativeDelta
     , roundTo
     , timeSeries
     )
@@ -15,7 +19,7 @@ import Stat exposing (Statistics)
 
 
 france20200225DataAsString =
-    [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784 ]
+    [ 13, 18, 38, 57, 100, 130, 191, 212, 285, 423, 613, 949, 1126, 1412, 1784, 2281, 2876 ]
         |> List.map String.fromInt
         |> String.join ", "
 
@@ -27,6 +31,51 @@ timeSeries data =
         |> List.map String.trim
         |> List.map String.toFloat
         |> Maybe.Extra.combine
+
+
+{-|
+
+    -- Successive difference
+    delta [1, 2, 4 , 8]
+    --> [1, 2, 4]
+
+-}
+delta : List Float -> List Float
+delta data =
+    let
+        n =
+            List.length data
+    in
+    List.map2 (-) (List.drop 1 data) (List.take (n - 1) data)
+
+
+relativeDelta : List Float -> List Float
+relativeDelta data =
+    let
+        n =
+            List.length data
+    in
+    List.map2 (/) (delta data) (List.take (n - 1) data)
+
+
+type alias Datum =
+    { index : Int
+    , data : Float
+    , delta : Float
+    , relativeDelta : Float
+    }
+
+
+dataItems : List Float -> List Datum
+dataItems data =
+    let
+        n =
+            List.length data
+
+        indices =
+            List.range 1 (n - 1) |> Debug.log "indices"
+    in
+    List.map4 Datum indices (List.drop 1 data) (delta data) (relativeDelta data)
 
 
 statistics : List Float -> Maybe Statistics

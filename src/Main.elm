@@ -5,7 +5,7 @@ module Main exposing (Model, Msg(..), buttonStyle, computeButton, indicator, ind
 
 import Browser
 import CaseData exposing (CaseData)
-import Compute
+import Compute exposing (Datum, roundTo)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Font as Font
@@ -16,6 +16,8 @@ import Markdown.Option exposing (..)
 import Markdown.Render exposing (MarkdownMsg)
 import Stat exposing (Statistics)
 import Strings
+import Style
+import Widget
 
 
 main =
@@ -32,16 +34,23 @@ type alias Model =
     , country : Maybe String
     , timeSeries : Maybe (List Float)
     , statistics : Maybe Statistics
+    , displayPage : DisplayPage
     }
+
+
+type DisplayPage
+    = About
+    | Data
 
 
 init : Model
 init =
     { counter = 0
-    , data = ""
+    , data = Compute.france20200225DataAsString
     , country = Nothing
-    , timeSeries = Nothing
+    , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
     , statistics = Nothing
+    , displayPage = About
     }
 
 
@@ -56,6 +65,7 @@ type Msg
     | Clear
     | LoadCountry String
     | MarkdownMsg MarkdownMsg
+    | SetDisplay DisplayPage
 
 
 update : Msg -> Model -> Model
@@ -85,6 +95,9 @@ update msg model =
 
         MarkdownMsg _ ->
             model
+
+        SetDisplay displayPage ->
+            { model | displayPage = displayPage }
 
 
 
@@ -200,13 +213,93 @@ leftColumn model =
         , alignTop
         , padding 20
         ]
-        [ markdownText model |> Element.html ]
+        [ header model
+        , case model.displayPage of
+            About ->
+                markdownText model |> Element.html
+
+            Data ->
+                dataView model
+        ]
+
+
+header : Model -> Element Msg
+header model =
+    row [ paddingXY 12 0, height (px 35), width fill, spacing 12, Background.color Style.mediumGray ]
+        [ Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
+        , Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
+        ]
+
+
+dataView : Model -> Element msg
+dataView model =
+    column
+        [ width (px 350)
+        , height (px 600)
+        , Background.color Style.pureWhite
+        , Font.size 10
+        , paddingXY 12 12
+        , spacing 8
+        , alignRight
+        , scrollbarY
+        ]
+        (dataHeader
+            :: firstItem model.timeSeries
+            :: viewDelta (model.timeSeries |> Maybe.withDefault [])
+        )
+
+
+dataHeader =
+    row [ spacing 10 ]
+        [ viewItem 11 <| "n"
+        , viewItem 40 <| "Cases"
+        , viewItem 40 <| "Change"
+        , viewItem 30 <| "%%"
+        ]
+
+
+firstItem : Maybe (List Float) -> Element msg
+firstItem data =
+    let
+        itemZero =
+            case data of
+                Nothing ->
+                    "-"
+
+                Just data_ ->
+                    Maybe.map (String.fromFloat << roundTo 0) (List.head data_) |> Maybe.withDefault "-"
+    in
+    row [ spacing 10 ]
+        [ viewItem 11 <| "0"
+        , viewItem 40 <| itemZero
+        , viewItem 40 <| "N/A"
+        , viewItem 30 <| "N/A"
+        ]
+
+
+viewDelta : List Float -> List (Element msg)
+viewDelta data =
+    let
+        viewDatum : Datum -> Element msg
+        viewDatum datum =
+            row [ spacing 10 ]
+                [ viewItem 11 <| String.fromInt datum.index
+                , viewItem 40 <| String.fromFloat <| roundTo 0 datum.data
+                , viewItem 40 <| String.fromFloat <| roundTo 0 datum.delta
+                , viewItem 30 <| String.padLeft 4 ' ' <| String.fromFloat <| roundTo 1 <| (\x -> x * 100.0) <| datum.relativeDelta
+                ]
+    in
+    List.map viewDatum (Compute.dataItems data)
+
+
+viewItem w str =
+    column [ width (px w) ] [ el [ alignRight ] (text str) ]
 
 
 markdownText model =
     Html.div
         [ HA.style "width" "350px"
-        , HA.style "height" "600px"
+        , HA.style "height" "565px"
         , HA.style "overflow" "scroll"
         , HA.style "white-space" "normal"
         , HA.style "margin" "20px"
