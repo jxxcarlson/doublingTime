@@ -73,7 +73,7 @@ dataItems data =
             List.length data
 
         indices =
-            List.range 1 (n - 1) |> Debug.log "indices"
+            List.range 1 (n - 1)
     in
     List.map4 Datum indices (List.drop 1 data) (delta data) (relativeDelta data)
 
