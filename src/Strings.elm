@@ -3,7 +3,7 @@ module Strings exposing (text)
 
 text =
     """
-# Doubling Time Calculator
+## Doubling Time Calculator
 
 This app computes  *doubling times.*
 This is a number that is important in understanding
@@ -40,8 +40,14 @@ An asterisk next to a country means that linear interpolation
 was used to fill in missing values. For a different view
 of the data, press the **Data** tab above.
 
+*If weekly doubling times are getting longer and longer, this is a
+good sign: the epidemic is slowing down. At some point growth
+of the number of cases will no longer be exponential.  At some
+still later point, the growth will be zero: the epidemic is then
+finished.*
 
-## Example
+
+### Example
 
 ![France: Coronavirus](http://jxxcarlson.s3.amazonaws.com/covid-19-france.png)
 
@@ -86,7 +92,7 @@ rate of zero is still better.
 
 
 
-## Understanding exponential growth
+### Understanding exponential growth
 
 We human beings, even if we understand the
 mathematics, have a poor intuitive understanding
@@ -111,7 +117,7 @@ at the bottom of this document under the topic
 *Water Lilies, Revisited.*
 
 
-## Methods
+### Methods
 
 The method used to find the doubling time is standard:
 
@@ -124,7 +130,7 @@ The doubling time is the logarithm of 2 divided
 by the slope.
 
 
-## Cautions
+### Cautions
 
 There are various cautions that one should
 exercise in using any
@@ -142,7 +148,7 @@ see a doctor?  Were all those persons
 properly diagnosed? Etc.
 
 
-## Water Lilies, Revisited.
+### Water Lilies, Revisited.
 
 The answer: *the pond is half covered with lily pads on the 47th
 day.*  Why?  Going forward in time by one day,
@@ -157,7 +163,7 @@ week before it is completely covered? Well, we must
 divide 100% by 2 seven times.  If we do this, we
 find that 0.7% of the pond is covered.
 
-## The Moral of the Story
+### The Moral of the Story
 
 One might be tempted to say "Well, there are
 only a few hundred cases of disease X in a country of
@@ -171,7 +177,7 @@ Then after 7 doublings, which takes 2 weeks, there will be
 will be 16,384,000 cases.  Not good!
 
 
-## Technical Stuff
+### Technical Stuff
 
 Let $N(t)$ be the cumulative number of cases recorded as of time $t$,
 where $t = 0, 1, 2, ...$ is the number of days after the date
@@ -211,7 +217,7 @@ $$
 $$
 
 
-## Remarks on Bacteria
+### Remarks on Bacteria
 
 We mentioned that bacterial populations
 under the right conditions can grow
@@ -237,7 +243,7 @@ The main point: exponential growth applies to one phase of the lifetime of the
 bacterial population.
 
 
-## Remarks on Epidemics
+### Remarks on Epidemics
 
 As with bacteria, there is an exponential  growth phase,
 and as with bacteria,
@@ -254,7 +260,7 @@ decreases through one of the following mechanism:
 When there are no more susceptible individuals,
 the epidemic ends. Again, exponential growth applies only in the early phase.
 
-## Notes
+### Notes
 
 This app is written in [Elm](https://elm-lang.org).  Here is the 
 [Github repo](https://github.com/jxxcarlson/doublingTime). If you
