@@ -3,7 +3,7 @@ module Strings exposing (text)
 
 text =
     """
-## About Doubling Times
+### About Doubling Times
 
 The doubling time is a number that is important in understanding
 any quantity that grows exponentially, e.g.,
