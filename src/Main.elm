@@ -16,10 +16,10 @@ import Markdown.Option exposing (..)
 import Markdown.Render exposing (MarkdownMsg)
 import Stat exposing (Statistics)
 import Strings
-import Style
 import Svg exposing (Svg)
 import Svg.Attributes as SA
-import Widget
+import Widget.Button as Button exposing (Size(..), button)
+import Widget.Style as Style
 
 
 main =
@@ -184,7 +184,10 @@ casesForCountry model caseData =
 
 loadCountryButton : Model -> String -> Element Msg
 loadCountryButton model country =
-    Widget.selectedButton 100 (LoadCountry country) country (model.country == Just country)
+    button (LoadCountry country) country
+        |> Button.withSelected (model.country == Just country)
+        |> Button.withWidth (Bounded 100)
+        |> Button.toElement
 
 
 middleColumn model =
@@ -225,9 +228,18 @@ leftColumn model =
 header : Model -> Element Msg
 header model =
     row [ width fill, spacing 12, Background.color Style.mediumGray ]
-        [ Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
-        , Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
-        , Widget.selectedButton 80 (SetDisplay Notes) "Notes" (model.displayPage == Notes)
+        [ button (SetDisplay Data) "Data"
+            |> Button.withSelected (model.displayPage == Data)
+            |> Button.withWidth (Bounded 80)
+            |> Button.toElement
+        , button (SetDisplay About) "About"
+            |> Button.withSelected (model.displayPage == About)
+            |> Button.withWidth (Bounded 80)
+            |> Button.toElement
+        , button (SetDisplay Notes) "Notes"
+            |> Button.withSelected (model.displayPage == Notes)
+            |> Button.withWidth (Bounded 80)
+            |> Button.toElement
         ]
 
 
@@ -408,17 +420,23 @@ indicator model =
 
 computeButton : Element Msg
 computeButton =
-    Widget.standardButton 120 Compute "Doubling time"
+    button Compute "Doubling time"
+        |> Button.withWidth (Bounded 120)
+        |> Button.toElement
 
 
 clearButton : Element Msg
 clearButton =
-    Widget.standardButton 80 Clear "Clear"
+    button Clear "Clear"
+        |> Button.withWidth (Bounded 80)
+        |> Button.toElement
 
 
 getSampleButton : Model -> Element Msg
 getSampleButton model =
-    Widget.selectedButton 120 SampleData "Sample Data" (model.country == Just "Sample Data")
+    button SampleData "Sample Data"
+        |> Button.withWidth (Bounded 120)
+        |> Button.toElement
 
 
 textInput model =

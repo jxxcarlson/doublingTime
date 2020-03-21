@@ -1,4 +1,4 @@
-module Style exposing (darkGray, darkRed, lightRed, mediumGray, myFocusStyle, pureWhite, white)
+module Widget.Style exposing (darkGray, darkRed, lightRed, mediumGray, myFocusStyle, pureWhite, white)
 
 import Element exposing (..)
 import Element.Background as Background
