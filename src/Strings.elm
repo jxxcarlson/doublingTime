@@ -3,10 +3,9 @@ module Strings exposing (text)
 
 text =
     """
-## Doubling Time Calculator
+## About Doubling Times
 
-This app computes  *doubling times.*
-This is a number that is important in understanding
+The doubling time is a number that is important in understanding
 any quantity that grows exponentially, e.g.,
 [bacterial populations](https://vlab.amrita.edu/?sub=3&brch=73&sim=1105&cnt=1) or the number of
 infected individuals in the first

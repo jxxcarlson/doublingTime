@@ -151,9 +151,20 @@ rightColumn model =
     let
         g =
             0.9
+
+        rightColumHeader =
+            el [ Font.bold, Font.size 18 ] (text "Covid-19 Data by Country")
     in
-    column [ alignTop, Background.color (Element.rgb g g g), padding 20, Font.size 14, width (px 400), height (px 680), spacing 10 ]
-        (List.map (casesForCountry model) CaseData.cases)
+    column
+        [ alignTop
+        , Background.color (Element.rgb g g g)
+        , padding 20
+        , Font.size 14
+        , width (px 400)
+        , height (px 680)
+        , spacing 10
+        ]
+        (rightColumHeader :: List.map (casesForCountry model) CaseData.cases)
 
 
 casesForCountry : Model -> CaseData -> Element Msg
@@ -194,7 +205,8 @@ leftColumn model =
         , alignTop
         , padding 20
         ]
-        [ header model
+        [ el [ Font.bold, Font.size 18, paddingXY 0 12 ] (text "Doubling Time Estimator")
+        , header model
         , case model.displayPage of
             About ->
                 markdownText model |> Element.html
@@ -216,7 +228,7 @@ dataView : Model -> Element msg
 dataView model =
     column
         [ width (px 350)
-        , height (px 600)
+        , height (px 563)
         , Background.color Style.pureWhite
         , Font.size 10
         , paddingXY 12 12
@@ -279,8 +291,8 @@ viewItem w str =
 
 markdownText model =
     Html.div
-        [ HA.style "width" "350px"
-        , HA.style "height" "565px"
+        [ HA.style "width" "310px"
+        , HA.style "height" "525px"
         , HA.style "overflow" "scroll"
         , HA.style "white-space" "normal"
         , HA.style "margin" "20px"
