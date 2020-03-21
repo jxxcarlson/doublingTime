@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), buttonStyle, computeButton, indicator, indicatorStyle, init, main, mainColumn, mainColumnStyle, update, view)
+module Main exposing (Model, Msg(..), computeButton, indicator, indicatorStyle, init, main, mainColumn, update, view)
 
 {-| Simple counter app using mdgriffith/elm-ui
 -}
@@ -47,10 +47,10 @@ init : Model
 init =
     { counter = 0
     , data = Compute.france20200225DataAsString
-    , country = Nothing
+    , country = Just "Sample"
     , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
     , statistics = Nothing
-    , displayPage = About
+    , displayPage = Data
     }
 
 
@@ -91,7 +91,7 @@ update msg model =
             loadCountry country model
 
         SampleData ->
-            { model | country = Nothing, data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
+            { model | country = Just "Sample", data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
 
         MarkdownMsg _ ->
             model
@@ -135,7 +135,7 @@ view model =
         g =
             0.4
     in
-    Element.layout [ Background.color <| Element.rgb g g g ] (mainColumn model)
+    Element.layoutWith { options = [ focusStyle Style.myFocusStyle ] } [ Background.color <| Element.rgb g g g ] (mainColumn model)
 
 
 mainColumn : Model -> Element Msg
@@ -170,26 +170,7 @@ casesForCountry model caseData =
 
 loadCountryButton : Model -> String -> Element Msg
 loadCountryButton model country =
-    let
-        color =
-            case model.country of
-                Nothing ->
-                    Element.rgb 0 0 0
-
-                Just targetCountry ->
-                    case targetCountry == country of
-                        True ->
-                            Element.rgb 0.8 0 0
-
-                        False ->
-                            Element.rgb 0 0 0
-    in
-    row (buttonStyle2 100 color)
-        [ Input.button (buttonStyle2 100 color)
-            { onPress = Just (LoadCountry country)
-            , label = el [ centerX, centerY ] (text country)
-            }
-        ]
+    Widget.selectedButton 100 (LoadCountry country) country (model.country == Just country)
 
 
 middleColumn model =
@@ -202,7 +183,7 @@ middleColumn model =
             [ textInput model
             , dataSummary model
             , dataSummaryByWeek model
-            , row [ spacing 10 ] [ computeButton, clearButton, getSampleButton ]
+            , row [ spacing 10 ] [ computeButton, clearButton, getSampleButton model ]
             ]
         ]
 
@@ -338,12 +319,10 @@ dataSummary model =
                                 ++ String.fromFloat (Compute.roundTo 1 dt)
                                 ++ " days"
 
-                --++ " -- common ratio = "
-                --++ (String.fromFloat <| Compute.roundTo 1 (Compute.commonRatio dt))
                 message =
                     String.join ", " [ dataPoints, doubling ]
             in
-            Element.el [ Font.size 14, Font.color (Element.rgb 0.8 0 0) ] (text message)
+            Element.el [ Font.size 14, Font.color Style.lightRed ] (text message)
 
 
 dataSummaryByWeek : Model -> Element Msg
@@ -370,7 +349,7 @@ dataSummaryByWeek model =
                 message =
                     "Doubling times by week: " ++ doublingTimes
             in
-            Element.el [ Font.size 14, Font.color (Element.rgb 0.8 0 0) ] (text message)
+            Element.el [ Font.size 14, Font.color Style.lightRed ] (text message)
 
 
 indicator : Model -> Element msg
@@ -382,32 +361,17 @@ indicator model =
 
 computeButton : Element Msg
 computeButton =
-    row buttonStyle
-        [ Input.button buttonStyle
-            { onPress = Just Compute
-            , label = el [ centerX, centerY ] (text "Doubling time")
-            }
-        ]
+    Widget.standardButton 120 Compute "Doubling time"
 
 
 clearButton : Element Msg
 clearButton =
-    row buttonStyle
-        [ Input.button buttonStyle
-            { onPress = Just Clear
-            , label = el [ centerX, centerY ] (text "Clear")
-            }
-        ]
+    Widget.standardButton 80 Clear "Clear"
 
 
-getSampleButton : Element Msg
-getSampleButton =
-    row buttonStyle
-        [ Input.button buttonStyle
-            { onPress = Just SampleData
-            , label = el [ centerX, centerY ] (text "Sample Data")
-            }
-        ]
+getSampleButton : Model -> Element Msg
+getSampleButton model =
+    Widget.selectedButton 120 SampleData "Sample Data" (model.country == Just "Sample")
 
 
 textInput model =
@@ -430,30 +394,4 @@ indicatorStyle =
     , Background.color (rgb255 40 40 40)
     , Font.color (rgb255 255 0 0)
     , Font.size 50
-    ]
-
-
-buttonStyle2 w color =
-    [ paddingXY 8 2
-    , height <| px 30
-    , width <| px w
-    , Background.color color
-    , Font.color (rgb255 240 240 240)
-    , Font.size 14
-    ]
-
-
-buttonStyle =
-    [ paddingXY 8 2
-    , height <| px 30
-    , Background.color (rgb255 120 120 120)
-    , Font.color (rgb255 240 240 240)
-    , Font.size 14
-    ]
-
-
-mainColumnStyle =
-    [ centerX
-    , centerY
-    , width (px 800)
     ]

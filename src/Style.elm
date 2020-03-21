@@ -1,4 +1,4 @@
-module Style exposing (darkGray, darkRed, mediumGray, pureWhite, white)
+module Style exposing (darkGray, darkRed, lightRed, mediumGray, myFocusStyle, pureWhite, white)
 
 import Element exposing (..)
 import Element.Background as Background
@@ -12,6 +12,10 @@ gray g =
 
 darkRed =
     Element.rgb 0.45 0 0
+
+
+lightRed =
+    Element.rgb 0.7 0 0
 
 
 white =
@@ -28,3 +32,11 @@ mediumGray =
 
 darkGray =
     gray 0.4
+
+
+myFocusStyle : Element.FocusStyle
+myFocusStyle =
+    { borderColor = Nothing
+    , backgroundColor = Nothing
+    , shadow = Nothing
+    }

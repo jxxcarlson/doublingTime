@@ -40,4 +40,5 @@ buttonStyle w bgColor color =
     , Background.color bgColor
     , Font.color color
     , Font.size 14
+    , mouseDown [ Background.color (rgb255 40 40 200) ]
     ]

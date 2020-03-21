@@ -12,7 +12,7 @@ type alias CaseData =
 
 
 cases =
-    [ france, italy, usa, southKorea ]
+    [ france, italy, southKorea, usa ]
 
 
 france =
@@ -42,11 +42,13 @@ france =
         , 6633
         , 7730
         , 9134
+        , 10995
+        , 12612
         ]
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2"
     , sourceName = "Wikipedia"
     , country = "France"
-    , note = "Feb 25 to Mar 18, 2020"
+    , note = "Feb 25 to Mar 20, 2020"
     }
 
 
@@ -79,11 +81,13 @@ italy =
         , 27980
         , 31506
         , 35713
+        , 41035
+        , 47021
         ]
     , sourceLink = "https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Italy_medical_cases"
     , sourceName = "Wikipedia"
     , country = "Italy"
-    , note = "Feb 21 to Mar 18, 2020"
+    , note = "Feb 21 to Mar 20, 2020"
     }
 
 
@@ -149,11 +153,13 @@ southKorea =
         , 8320
         , 8413
         , 8565
+        , 8652
+        , 8799
         ]
     , sourceName = "Wikipedia"
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_South_Korea"
     , country = "South Korea"
-    , note = "Jan 20 to Mar 18, 2020"
+    , note = "Jan 20 to Mar 20, 2020"
     }
 
 
@@ -181,9 +187,11 @@ usa =
         , 4372
         , 5656
         , 8054
+        , 11980
+        , 17325
         ]
     , sourceName = "Wikipedia"
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_States"
     , country = "USA"
-    , note = "Feb 27 to Mar 18, 2020"
+    , note = "Feb 27 to Mar 20, 2020"
     }

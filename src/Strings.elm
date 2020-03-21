@@ -53,7 +53,9 @@ finished.*
 Above is a graph of the number of Coronavirus cases
 reported in France for the period February 25
 to March 12, 2020.  It looks "roughly exponential."
-Below is a table of the reported cases.  The image
+Below is a table of the reported cases. You see the same
+data in the middle panel, and below it in red, a computation
+of doubling times. The image
 and data are from
 [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2).
 
