@@ -1,4 +1,15 @@
-module Widget.Button exposing (Size(..), button, toElement, withSelected, withWidth)
+module Widget.Button exposing
+    ( Size(..)
+    , button
+    , toElement
+    , withBackgroundColor
+    , withFontColor
+    , withHeight
+    , withSelected
+    , withSelectedBackgroundColor
+    , withSelectedFontColor
+    , withWidth
+    )
 
 import Element exposing (..)
 import Element.Background as Background
@@ -28,6 +39,11 @@ type alias Options =
     }
 
 
+type Role
+    = Primary
+    | Secondary
+
+
 type Size
     = Bounded Int
     | Unbounded
@@ -54,14 +70,14 @@ toElement (Button options msg label) =
         button_ options.width options.height options.backgroundColor options.fontColor msg label
 
 
-type Role
-    = Primary
-    | Secondary
-
-
 withWidth : Size -> Button msg -> Button msg
 withWidth size (Button options msg label) =
     Button { options | width = size } msg label
+
+
+withHeight : Size -> Button msg -> Button msg
+withHeight size (Button options msg label) =
+    Button { options | height = size } msg label
 
 
 withSelected : Bool -> Button msg -> Button msg
@@ -69,21 +85,24 @@ withSelected flag (Button options msg label) =
     Button { options | selected = flag } msg label
 
 
-selectedButton w msg label flag =
-    case flag of
-        False ->
-            standardButton w msg label
-
-        True ->
-            selectedButton_ w msg label
+withBackgroundColor : Color -> Button msg -> Button msg
+withBackgroundColor color (Button options msg label) =
+    Button { options | backgroundColor = color } msg label
 
 
-selectedButton_ w msg label =
-    button_ w (Bounded 30) darkRed white msg label
+withFontColor : Color -> Button msg -> Button msg
+withFontColor color (Button options msg label) =
+    Button { options | fontColor = color } msg label
 
 
-standardButton w msg label =
-    button_ w (Bounded 30) darkGray white msg label
+withSelectedBackgroundColor : Color -> Button msg -> Button msg
+withSelectedBackgroundColor color (Button options msg label) =
+    Button { options | selectedBackgroundColor = color } msg label
+
+
+withSelectedFontColor : Color -> Button msg -> Button msg
+withSelectedFontColor color (Button options msg label) =
+    Button { options | selectedFontColor = color } msg label
 
 
 button_ w h bgColor color msg label =
