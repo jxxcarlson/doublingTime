@@ -21,11 +21,13 @@ now linear.
 
 An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
 
+[Simulation (Washington Post)](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans)
+
 ### Cumulative Coronavirus Deaths
 
 In the graph below, the logarithm of the number of deaths is plotted
 against time.  A quantity that grows exponentially will therefore
-appear as a straight line.  
+appear as a straight line.
 
 ![xx](http://jxxcarlson.s3.amazonaws.com/coronavirus-cumulative-deaths-ft.png)
 FT.com
