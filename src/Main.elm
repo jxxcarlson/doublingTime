@@ -43,14 +43,14 @@ type alias Model =
 type DisplayPage
     = About
     | Data
-    | Articles
+    | Notes
 
 
 init : Model
 init =
     { counter = 0
     , data = Compute.france20200225DataAsString
-    , country = Just "Sample"
+    , country = Just "Sample Data"
     , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
     , statistics = Nothing
     , displayPage = Data
@@ -94,7 +94,7 @@ update msg model =
             loadCountry country model
 
         SampleData ->
-            { model | country = Just "Sample", data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
+            { model | country = Just "Sample Data", data = Compute.france20200225DataAsString, timeSeries = Compute.timeSeries Compute.france20200225DataAsString }
 
         MarkdownMsg _ ->
             model
@@ -217,7 +217,7 @@ leftColumn model =
             Data ->
                 dataView model
 
-            Articles ->
+            Notes ->
                 articleView model |> Element.html
         ]
 
@@ -227,7 +227,7 @@ header model =
     row [ paddingXY 12 0, width fill, spacing 12, Background.color Style.mediumGray ]
         [ Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
         , Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
-        , Widget.selectedButton 80 (SetDisplay Articles) "Articles" (model.displayPage == Articles)
+        , Widget.selectedButton 80 (SetDisplay Notes) "Notes" (model.displayPage == Notes)
         ]
 
 
@@ -243,12 +243,21 @@ dataView model =
         , alignRight
         , scrollbarY
         ]
-        (dataHeader
+        (title model
+            :: dataHeader
             :: firstItem model.timeSeries
             :: viewDelta (model.timeSeries |> Maybe.withDefault [])
         )
 
 
+title : Model -> Element msg
+title model =
+    row [ Font.bold, Font.size 18, paddingXY 0 10 ]
+        [ el [] (text (model.country |> Maybe.withDefault "---"))
+        ]
+
+
+dataHeader : Element msg
 dataHeader =
     row [ spacing 10 ]
         [ viewItem 11 <| "n"
@@ -409,7 +418,7 @@ clearButton =
 
 getSampleButton : Model -> Element Msg
 getSampleButton model =
-    Widget.selectedButton 120 SampleData "Sample Data" (model.country == Just "Sample")
+    Widget.selectedButton 120 SampleData "Sample Data" (model.country == Just "Sample Data")
 
 
 textInput model =

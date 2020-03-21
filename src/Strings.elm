@@ -3,9 +3,23 @@ module Strings exposing (article, text)
 
 article =
     """
+## Notes
+
+It is instructive to look at the course of
+the pandemic in South Korea.   Testing
+and other public health measures
+began early, and for four weeks there
+were just a few cases: only
+30 by day 28. At that point,
+exponential growth takes
+hold and lasts for about 12 days, until day 42,
+at which point the growth in the number of new
+cases has started to slow. A week later, on day
+49, the growth has slowed still more, and is
+now linear.
 
 
-[Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
 
 .
 """
