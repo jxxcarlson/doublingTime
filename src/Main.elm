@@ -224,7 +224,7 @@ leftColumn model =
 
 header : Model -> Element Msg
 header model =
-    row [ paddingXY 12 0, width fill, spacing 12, Background.color Style.mediumGray ]
+    row [ width fill, spacing 12, Background.color Style.mediumGray ]
         [ Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
         , Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
         , Widget.selectedButton 80 (SetDisplay Notes) "Notes" (model.displayPage == Notes)
