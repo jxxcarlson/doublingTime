@@ -17,6 +17,8 @@ import Markdown.Render exposing (MarkdownMsg)
 import Stat exposing (Statistics)
 import Strings
 import Style
+import Svg exposing (Svg)
+import Svg.Attributes as SA
 import Widget
 
 
@@ -237,7 +239,7 @@ dataView model =
         , Background.color Style.pureWhite
         , Font.size 10
         , paddingXY 12 12
-        , spacing 8
+        , spacing 5
         , alignRight
         , scrollbarY
         ]
@@ -278,6 +280,9 @@ firstItem data =
 viewDelta : List Float -> List (Element msg)
 viewDelta data =
     let
+        lastValue =
+            List.head (List.reverse data) |> Maybe.withDefault 100000000
+
         viewDatum : Datum -> Element msg
         viewDatum datum =
             row [ spacing 10 ]
@@ -285,6 +290,7 @@ viewDelta data =
                 , viewItem 40 <| String.fromFloat <| roundTo 0 datum.data
                 , viewItem 40 <| String.fromFloat <| roundTo 0 datum.delta
                 , viewItem 30 <| String.padLeft 4 ' ' <| String.fromFloat <| roundTo 1 <| (\x -> x * 100.0) <| datum.relativeDelta
+                , bar lastValue datum.data
                 ]
     in
     List.map viewDatum (Compute.dataItems data)
@@ -414,6 +420,43 @@ textInput model =
         , label = Input.labelAbove [] (text "Enter data separated by commas")
         , spellcheck = False
         }
+
+
+
+-- SVG
+
+
+bar total toDate =
+    bar_ (toDate / total)
+
+
+bar_ fraction =
+    let
+        h =
+            10
+
+        w =
+            180
+    in
+    Svg.svg
+        [ SA.transform "scale(1,1)"
+        , SA.transform "translate(25, 0)"
+        , SA.height <| String.fromFloat h
+        , SA.width <| String.fromFloat w
+        ]
+        [ barRect "#A00" w h 0 fraction ]
+        |> Element.html
+
+
+barRect : String -> Float -> Float -> Float -> Float -> Svg msg
+barRect color barWidth barHeight x fraction =
+    Svg.rect
+        [ SA.height <| String.fromFloat barHeight
+        , SA.width <| String.fromFloat <| fraction * barWidth
+        , SA.x <| String.fromFloat x
+        , SA.fill color
+        ]
+        []
 
 
 
