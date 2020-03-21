@@ -334,7 +334,7 @@ articleView model =
         , HA.style "font-size" "11px"
         , HA.style "line-height" "18px"
         ]
-        [ Markdown.Render.toHtml ExtendedMath Strings.article
+        [ Markdown.Render.toHtml ExtendedMath Strings.notes
             |> Html.map MarkdownMsg
         ]
 
