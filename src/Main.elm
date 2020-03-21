@@ -41,6 +41,7 @@ type alias Model =
 type DisplayPage
     = About
     | Data
+    | Articles
 
 
 init : Model
@@ -213,22 +214,26 @@ leftColumn model =
 
             Data ->
                 dataView model
+
+            Articles ->
+                articleView model |> Element.html
         ]
 
 
 header : Model -> Element Msg
 header model =
-    row [ paddingXY 12 0, height (px 35), width fill, spacing 12, Background.color Style.mediumGray ]
-        [ Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
-        , Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
+    row [ paddingXY 12 0, width fill, spacing 12, Background.color Style.mediumGray ]
+        [ Widget.selectedButton 80 (SetDisplay Data) "Data" (model.displayPage == Data)
+        , Widget.selectedButton 80 (SetDisplay About) "About" (model.displayPage == About)
+        , Widget.selectedButton 80 (SetDisplay Articles) "Articles" (model.displayPage == Articles)
         ]
 
 
 dataView : Model -> Element msg
 dataView model =
     column
-        [ width (px 350)
-        , height (px 563)
+        [ width (px 380)
+        , height (px 568)
         , Background.color Style.pureWhite
         , Font.size 10
         , paddingXY 12 12
@@ -291,8 +296,8 @@ viewItem w str =
 
 markdownText model =
     Html.div
-        [ HA.style "width" "310px"
-        , HA.style "height" "525px"
+        [ HA.style "width" "340px"
+        , HA.style "height" "528px"
         , HA.style "overflow" "scroll"
         , HA.style "white-space" "normal"
         , HA.style "margin" "20px"
@@ -300,6 +305,21 @@ markdownText model =
         , HA.style "line-height" "18px"
         ]
         [ Markdown.Render.toHtml ExtendedMath Strings.text
+            |> Html.map MarkdownMsg
+        ]
+
+
+articleView model =
+    Html.div
+        [ HA.style "width" "340px"
+        , HA.style "height" "528px"
+        , HA.style "overflow" "scroll"
+        , HA.style "white-space" "normal"
+        , HA.style "margin" "20px"
+        , HA.style "font-size" "11px"
+        , HA.style "line-height" "18px"
+        ]
+        [ Markdown.Render.toHtml ExtendedMath Strings.article
             |> Html.map MarkdownMsg
         ]
 
