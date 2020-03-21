@@ -20,6 +20,7 @@ import Svg exposing (Svg)
 import Svg.Attributes as SA
 import Widget.Button as Button exposing (Size(..), button)
 import Widget.Style as Style
+import Widget.TextArea exposing (TextArea)
 
 
 main =
