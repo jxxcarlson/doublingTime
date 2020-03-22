@@ -11,7 +11,7 @@ import Model exposing (DisplayPage(..), Model, Msg(..), init)
 import Utility.Calendar as Calendar
 import View.RightColumn exposing (rightColumn)
 import View.Text as Text
-import Widget.Bar exposing (bar)
+import Widget.Bar
 import Widget.Button as Button exposing (Size(..), button)
 import Widget.Style as Style
 import Widget.TextArea as TextArea exposing (TextArea)
@@ -242,10 +242,16 @@ viewDelta month day data =
                 , viewItem 35 <| String.fromFloat <| roundTo 0 datum.data
                 , viewItem 40 <| String.fromFloat <| roundTo 0 datum.delta
                 , viewItem 30 <| String.padLeft 4 ' ' <| String.fromFloat <| roundTo 1 <| (\x -> x * 100.0) <| datum.relativeDelta
-                , bar lastValue datum.data
+                , myBar lastValue datum.data
                 ]
     in
     List.map viewDatum (Compute.dataItems data)
+
+
+myBar maxValue value =
+    Widget.Bar.make (value / maxValue)
+        |> Widget.Bar.withRGBHex "#A00"
+        |> Widget.Bar.toElement
 
 
 dateOfItem : Int -> Int -> Int -> String
