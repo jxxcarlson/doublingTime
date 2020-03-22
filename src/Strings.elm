@@ -16,7 +16,7 @@ FT.com
 
 For the lastest, take a look at the current [Financial Times article](https://www.ft.com/coronavirus-latest)
 
-## The Case of South Korea
+### The Case of South Korea
 
 It is instructive to look at the course of
 the pandemic in South Korea
@@ -31,15 +31,19 @@ By day 42, the growth in the number of new
 cases has started to slow. A week later, on day
 49, the growth has slowed still more, and is
 now increasing at about 1% per day.
-It appears that South Koreal is gaining
+It appears that South Korea     is gaining
 control of the epidemic.
 
 
-## Links and articles
+### Links and articles
 
-An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+- [We Were Warned](https://www.theatlantic.com/politics/archive/2020/03/pandemic-coronavirus-united-states-trump-cdc/608215/), Uri Friedman, The Atlantic, March 18, 2020
 
-[Simulation (Washington Post)](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans)
+- [Why the Coronavirus Has Been So Successfu](https://www.theatlantic.com/science/archive/2020/03/biography-new-coronavirus/608338/), Ed Yong, The Atlantic, March 20, 2020
+
+- [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+
+- [Simulation](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans) (Washington Post)
 
 
 """
