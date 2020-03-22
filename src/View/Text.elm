@@ -1,11 +1,11 @@
-module View.Text exposing (viewAbout, viewNotes)
+module View.Text exposing (viewAbout, viewArticles, viewNotes)
 
 import Html
 import Html.Attributes as HA
 import Markdown.Option exposing (..)
 import Markdown.Render exposing (MarkdownMsg)
 import Model exposing (Msg(..))
-import Strings
+import View.Strings as Strings
 
 
 viewAbout model =
@@ -20,6 +20,14 @@ viewNotes model =
     Html.div
         viewStyle
         [ Markdown.Render.toHtml ExtendedMath Strings.notes
+            |> Html.map MarkdownMsg
+        ]
+
+
+viewArticles model =
+    Html.div
+        viewStyle
+        [ Markdown.Render.toHtml ExtendedMath Strings.articles
             |> Html.map MarkdownMsg
         ]
 

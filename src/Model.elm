@@ -12,6 +12,8 @@ type alias Model =
     , timeSeries : Maybe (List Float)
     , statistics : Maybe Statistics
     , displayPage : DisplayPage
+    , monthOfFirstCase : Int
+    , dayOfFirstCase : Int
     }
 
 
@@ -29,6 +31,7 @@ type DisplayPage
     = About
     | Data
     | Notes
+    | Articles
 
 
 init : Model
@@ -39,4 +42,6 @@ init =
     , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
     , statistics = Nothing
     , displayPage = Data
+    , monthOfFirstCase = 0
+    , dayOfFirstCase = 0
     }

@@ -8,6 +8,7 @@ import Element.Background as Background
 import Element.Font as Font
 import Html exposing (Html)
 import Model exposing (DisplayPage(..), Model, Msg(..), init)
+import Utility.Calendar as Calendar
 import View.RightColumn exposing (rightColumn)
 import View.Text as Text
 import Widget.Bar exposing (bar)
@@ -83,6 +84,8 @@ loadCountry country model =
                 , data = data
                 , timeSeries = Compute.timeSeries data
                 , displayPage = Data
+                , monthOfFirstCase = countryCases.startMonth
+                , dayOfFirstCase = countryCases.startDay
             }
 
 
@@ -129,7 +132,7 @@ leftColumn model =
         , alignTop
         , padding 20
         ]
-        [ el [ Font.bold, Font.size 18, paddingXY 0 12 ] (text "Doubling Time Estimator")
+        [ el [ Font.bold, Font.size 18, paddingXY 0 12 ] (text "Coronavirus Pandemic and Doubling Times")
         , header model
         , case model.displayPage of
             About ->
@@ -140,6 +143,9 @@ leftColumn model =
 
             Notes ->
                 Text.viewNotes model |> Element.html
+
+            Articles ->
+                Text.viewArticles model |> Element.html
         ]
 
 
@@ -156,6 +162,10 @@ header model =
             |> Button.toElement
         , button (SetDisplay Notes) "Notes"
             |> Button.withSelected (model.displayPage == Notes)
+            |> Button.withWidth (Bounded 80)
+            |> Button.toElement
+        , button (SetDisplay Articles) "Articles"
+            |> Button.withSelected (model.displayPage == Articles)
             |> Button.withWidth (Bounded 80)
             |> Button.toElement
         ]
@@ -175,8 +185,8 @@ dataView model =
         ]
         (title model
             :: dataHeader
-            :: firstItem model.timeSeries
-            :: viewDelta (model.timeSeries |> Maybe.withDefault [])
+            :: firstItem model.monthOfFirstCase model.dayOfFirstCase model.timeSeries
+            :: viewDelta model.monthOfFirstCase model.dayOfFirstCase (model.timeSeries |> Maybe.withDefault [])
         )
 
 
@@ -191,14 +201,15 @@ dataHeader : Element msg
 dataHeader =
     row [ spacing 10 ]
         [ viewItem 11 <| "n"
-        , viewItem 40 <| "Cases"
+        , viewItem 20 <| "Date"
+        , viewItem 35 <| "Cases"
         , viewItem 40 <| "Change"
         , viewItem 30 <| "%%"
         ]
 
 
-firstItem : Maybe (List Float) -> Element msg
-firstItem data =
+firstItem : Int -> Int -> Maybe (List Float) -> Element msg
+firstItem month day data =
     let
         itemZero =
             case data of
@@ -210,14 +221,15 @@ firstItem data =
     in
     row [ spacing 10 ]
         [ viewItem 11 <| "0"
-        , viewItem 40 <| itemZero
+        , viewItem 20 <| dateOfItem month day 0
+        , viewItem 35 <| itemZero
         , viewItem 40 <| "N/A"
         , viewItem 30 <| "N/A"
         ]
 
 
-viewDelta : List Float -> List (Element msg)
-viewDelta data =
+viewDelta : Int -> Int -> List Float -> List (Element msg)
+viewDelta month day data =
     let
         lastValue =
             List.head (List.reverse data) |> Maybe.withDefault 100000000
@@ -226,13 +238,26 @@ viewDelta data =
         viewDatum datum =
             row [ spacing 10 ]
                 [ viewItem 11 <| String.fromInt datum.index
-                , viewItem 40 <| String.fromFloat <| roundTo 0 datum.data
+                , viewItem 20 <| dateOfItem month day datum.index
+                , viewItem 35 <| String.fromFloat <| roundTo 0 datum.data
                 , viewItem 40 <| String.fromFloat <| roundTo 0 datum.delta
                 , viewItem 30 <| String.padLeft 4 ' ' <| String.fromFloat <| roundTo 1 <| (\x -> x * 100.0) <| datum.relativeDelta
                 , bar lastValue datum.data
                 ]
     in
     List.map viewDatum (Compute.dataItems data)
+
+
+dateOfItem : Int -> Int -> Int -> String
+dateOfItem month_ day_ index =
+    let
+        baseIndex =
+            Calendar.indexOfDate month_ day_
+
+        adjustedIndex =
+            index + baseIndex
+    in
+    Calendar.dateOfIndex adjustedIndex
 
 
 viewItem w str =

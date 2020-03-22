@@ -1,4 +1,4 @@
-module Strings exposing (notes, text)
+module View.Strings exposing (articles, notes, text)
 
 
 notes =
@@ -35,17 +35,26 @@ It appears that South Korea     is gaining
 control of the epidemic.
 
 
-### Links and articles
+
+
+"""
+
+
+articles =
+    """
+## Articles
 
 - [We Were Warned](https://www.theatlantic.com/politics/archive/2020/03/pandemic-coronavirus-united-states-trump-cdc/608215/), Uri Friedman, The Atlantic, March 18, 2020
 
 - [Why the Coronavirus Has Been So Successfu](https://www.theatlantic.com/science/archive/2020/03/biography-new-coronavirus/608338/), Ed Yong, The Atlantic, March 20, 2020
 
+- [Lung failure in Coronavirus patients](https://www.propublica.org/article/a-medical-worker-describes--terrifying-lung-failure-from-covid19-even-in-his-young-patients), Lizzie Presser, ProPublica, March 21, 2020
+
 - [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
 
 - [Simulation](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans) (Washington Post)
 
-
+- [Epidemic Doubling Times](https://medium.com/me/stats/post/2000e7a1359)
 """
 
 

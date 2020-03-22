@@ -8,6 +8,8 @@ type alias CaseData =
     , sourceName : String
     , country : String
     , note : String
+    , startMonth : Int
+    , startDay : Int
     }
 
 
@@ -37,7 +39,6 @@ france =
         , 2876
         , 3661
         , 4449
-        , 4499
         , 5423
         , 6633
         , 7730
@@ -50,6 +51,8 @@ france =
     , sourceName = "Wikipedia"
     , country = "France"
     , note = "Feb 25 to Mar 21, 2020"
+    , startMonth = 2
+    , startDay = 25
     }
 
 
@@ -79,6 +82,7 @@ italy =
         , 15113
         , 17660
         , 21157
+        , 24747
         , 27980
         , 31506
         , 35713
@@ -86,10 +90,12 @@ italy =
         , 47021
         , 53578
         ]
-    , sourceLink = "https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Italy_medical_cases"
+    , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy"
     , sourceName = "Wikipedia"
     , country = "Italy"
     , note = "Feb 21 to Mar 21, 2020"
+    , startMonth = 2
+    , startDay = 21
     }
 
 
@@ -104,8 +110,8 @@ southKorea =
         , 2
         , 3
         , 4
-        , 5
-        , 5
+        , 4
+        , 4
         , 6
         , 11
         , 12
@@ -163,6 +169,8 @@ southKorea =
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_South_Korea"
     , country = "South Korea"
     , note = "Jan 20 to Mar 21, 2020"
+    , startMonth = 1
+    , startDay = 20
     }
 
 
@@ -198,4 +206,6 @@ usa =
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_States"
     , country = "USA"
     , note = "Feb 27 to Mar 21, 2020"
+    , startMonth = 2
+    , startDay = 27
     }
