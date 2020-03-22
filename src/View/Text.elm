@@ -4,7 +4,7 @@ import Html
 import Html.Attributes as HA
 import Markdown.Option exposing (..)
 import Markdown.Render exposing (MarkdownMsg)
-import Msg exposing (Msg(..))
+import Model exposing (Msg(..))
 import Strings
 
 

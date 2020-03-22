@@ -1,8 +1,5 @@
 module Main exposing (main)
 
-{-| Simple counter app using mdgriffith/elm-ui
--}
-
 import Browser
 import CaseData exposing (CaseData)
 import Compute exposing (Datum, roundTo)
@@ -10,8 +7,8 @@ import Element exposing (..)
 import Element.Background as Background
 import Element.Font as Font
 import Html exposing (Html)
-import Msg exposing (DisplayPage(..), Msg(..))
-import Stat exposing (Statistics)
+import Model exposing (DisplayPage(..), Model, Msg(..), init)
+import View.RightColumn exposing (rightColumn)
 import View.Text as Text
 import Widget.Bar exposing (bar)
 import Widget.Button as Button exposing (Size(..), button)
@@ -21,31 +18,6 @@ import Widget.TextArea as TextArea exposing (TextArea)
 
 main =
     Browser.sandbox { init = init, view = view, update = update }
-
-
-
--- MODEL
-
-
-type alias Model =
-    { counter : Int
-    , data : String
-    , country : Maybe String
-    , timeSeries : Maybe (List Float)
-    , statistics : Maybe Statistics
-    , displayPage : DisplayPage
-    }
-
-
-init : Model
-init =
-    { counter = 0
-    , data = Compute.france20200225DataAsString
-    , country = Just "Sample Data"
-    , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
-    , statistics = Nothing
-    , displayPage = Data
-    }
 
 
 
@@ -128,38 +100,6 @@ mainColumn model =
         [ leftColumn model
         , middleColumn model
         , rightColumn model
-        ]
-
-
-rightColumn model =
-    let
-        g =
-            0.9
-
-        rightColumHeader =
-            el [ Font.bold, Font.size 18 ] (text "Covid-19 Data by Country")
-    in
-    column
-        [ alignTop
-        , Background.color (Element.rgb g g g)
-        , padding 20
-        , Font.size 14
-        , width (px 400)
-        , height (px 680)
-        , spacing 10
-        ]
-        (rightColumHeader :: List.map (casesForCountry model) CaseData.cases)
-
-
-casesForCountry : Model -> CaseData -> Element Msg
-casesForCountry model caseData =
-    row [ spacing 15 ]
-        [ loadCountryButton model caseData.country
-        , el [ width (px 140), Font.size 13 ] (text caseData.note)
-        , link [ width (px 100), Font.color (Element.rgb 0 0 0.8) ]
-            { url = caseData.sourceLink
-            , label = text "Source"
-            }
         ]
 
 
@@ -356,14 +296,6 @@ dataSummaryByWeek model =
 
 
 --- WIDGETS
-
-
-loadCountryButton : Model -> String -> Element Msg
-loadCountryButton model country =
-    button (LoadCountry country) country
-        |> Button.withSelected (model.country == Just country)
-        |> Button.withWidth (Bounded 100)
-        |> Button.toElement
 
 
 computeButton : Element Msg
