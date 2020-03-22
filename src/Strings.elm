@@ -5,24 +5,6 @@ notes =
     """
 ## Notes
 
-It is instructive to look at the course of
-the pandemic in South Korea.   Testing
-and other public health measures
-began early, and for four weeks there
-were just a few cases: only
-30 by day 28. At that point,
-exponential growth takes
-hold and lasts for about 12 days, until day 42,
-at which point the growth in the number of new
-cases has started to slow. A week later, on day
-49, the growth has slowed still more, and is
-now increasing at about 1% per day.
-
-
-An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
-
-[Simulation (Washington Post)](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans)
-
 ### Cumulative Coronavirus Deaths
 
 In the graph below, the logarithm of the number of deaths is plotted
@@ -31,6 +13,34 @@ appear as a straight line.
 
 ![xx](http://jxxcarlson.s3.amazonaws.com/coronavirus-cumulative-deaths-ft.png)
 FT.com
+
+For the lastest, take a look at the current [Financial Times article](https://www.ft.com/coronavirus-latest)
+
+## The Case of South Korea
+
+It is instructive to look at the course of
+the pandemic in South Korea
+(see button in right column).   Testing
+and other public health measures
+began early. For four weeks, there
+were just a few cases: only
+30 by day 28. On day 28,
+exponential growth takes
+hold and lasts at a high rate for about 12 days, until day 42.
+By day 42, the growth in the number of new
+cases has started to slow. A week later, on day
+49, the growth has slowed still more, and is
+now increasing at about 1% per day.
+It appears that South Koreal is gaining
+control of the epidemic.
+
+
+## Links and articles
+
+An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
+
+[Simulation (Washington Post)](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/?itid=hp_hp-banner-main_virus-resource-box-v3%3Ahomepage%2Fstory-ans)
+
 
 """
 
