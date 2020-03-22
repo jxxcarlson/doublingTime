@@ -78,7 +78,12 @@ loadCountry country model =
                 data =
                     cd |> List.map String.fromFloat |> String.join ", "
             in
-            { model | country = Just countryCases.country, data = data, timeSeries = Compute.timeSeries data }
+            { model
+                | country = Just countryCases.country
+                , data = data
+                , timeSeries = Compute.timeSeries data
+                , displayPage = Data
+            }
 
 
 

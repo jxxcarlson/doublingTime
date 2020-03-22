@@ -10,14 +10,7 @@ import Strings
 
 viewAbout model =
     Html.div
-        [ HA.style "width" "340px"
-        , HA.style "height" "528px"
-        , HA.style "overflow" "scroll"
-        , HA.style "white-space" "normal"
-        , HA.style "margin" "20px"
-        , HA.style "font-size" "11px"
-        , HA.style "line-height" "18px"
-        ]
+        viewStyle
         [ Markdown.Render.toHtml ExtendedMath Strings.text
             |> Html.map MarkdownMsg
         ]
@@ -25,14 +18,18 @@ viewAbout model =
 
 viewNotes model =
     Html.div
-        [ HA.style "width" "340px"
-        , HA.style "height" "528px"
-        , HA.style "overflow" "scroll"
-        , HA.style "white-space" "normal"
-        , HA.style "margin" "20px"
-        , HA.style "font-size" "11px"
-        , HA.style "line-height" "18px"
-        ]
+        viewStyle
         [ Markdown.Render.toHtml ExtendedMath Strings.notes
             |> Html.map MarkdownMsg
         ]
+
+
+viewStyle =
+    [ HA.style "width" "340px"
+    , HA.style "height" "528px"
+    , HA.style "overflow" "scroll"
+    , HA.style "white-space" "normal"
+    , HA.style "margin" "20px"
+    , HA.style "font-size" "11px"
+    , HA.style "line-height" "18px"
+    ]

@@ -22,7 +22,7 @@ rightColumn model =
         , padding 20
         , Font.size 14
         , width (px 400)
-        , height (px 680)
+        , height (px 673)
         , spacing 10
         ]
         (rightColumHeader :: List.map (casesForCountry model) CaseData.cases)

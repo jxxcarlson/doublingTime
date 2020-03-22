@@ -16,7 +16,7 @@ hold and lasts for about 12 days, until day 42,
 at which point the growth in the number of new
 cases has started to slow. A week later, on day
 49, the growth has slowed still more, and is
-now linear.
+now increasing at about 1% per day.
 
 
 An article with advice,  data, and graphs: [Corona Virus: Why You Must Act Now (Tomas Pueyo)](https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca)
