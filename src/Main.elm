@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), computeButton, indicator, indicatorStyle, init, main, mainColumn, update, view)
+module Main exposing (main)
 
 {-| Simple counter app using mdgriffith/elm-ui
 -}
@@ -9,18 +9,14 @@ import Compute exposing (Datum, roundTo)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Font as Font
-import Element.Input as Input
 import Html exposing (Html)
-import Html.Attributes as HA
-import Markdown.Option exposing (..)
-import Markdown.Render exposing (MarkdownMsg)
+import Msg exposing (DisplayPage(..), Msg(..))
 import Stat exposing (Statistics)
-import Strings
-import Svg exposing (Svg)
-import Svg.Attributes as SA
+import View.Text as Text
+import Widget.Bar exposing (bar)
 import Widget.Button as Button exposing (Size(..), button)
 import Widget.Style as Style
-import Widget.TextArea exposing (TextArea)
+import Widget.TextArea as TextArea exposing (TextArea)
 
 
 main =
@@ -41,12 +37,6 @@ type alias Model =
     }
 
 
-type DisplayPage
-    = About
-    | Data
-    | Notes
-
-
 init : Model
 init =
     { counter = 0
@@ -60,16 +50,6 @@ init =
 
 
 -- UPDATE
-
-
-type Msg
-    = Compute
-    | GotText String
-    | SampleData
-    | Clear
-    | LoadCountry String
-    | MarkdownMsg MarkdownMsg
-    | SetDisplay DisplayPage
 
 
 update : Msg -> Model -> Model
@@ -183,14 +163,6 @@ casesForCountry model caseData =
         ]
 
 
-loadCountryButton : Model -> String -> Element Msg
-loadCountryButton model country =
-    button (LoadCountry country) country
-        |> Button.withSelected (model.country == Just country)
-        |> Button.withWidth (Bounded 100)
-        |> Button.toElement
-
-
 middleColumn model =
     let
         g =
@@ -216,13 +188,13 @@ leftColumn model =
         , header model
         , case model.displayPage of
             About ->
-                markdownText model |> Element.html
+                Text.viewAbout model |> Element.html
 
             Data ->
                 dataView model
 
             Notes ->
-                articleView model |> Element.html
+                Text.viewNotes model |> Element.html
         ]
 
 
@@ -322,36 +294,6 @@ viewItem w str =
     column [ width (px w) ] [ el [ alignRight ] (text str) ]
 
 
-markdownText model =
-    Html.div
-        [ HA.style "width" "340px"
-        , HA.style "height" "528px"
-        , HA.style "overflow" "scroll"
-        , HA.style "white-space" "normal"
-        , HA.style "margin" "20px"
-        , HA.style "font-size" "11px"
-        , HA.style "line-height" "18px"
-        ]
-        [ Markdown.Render.toHtml ExtendedMath Strings.text
-            |> Html.map MarkdownMsg
-        ]
-
-
-articleView model =
-    Html.div
-        [ HA.style "width" "340px"
-        , HA.style "height" "528px"
-        , HA.style "overflow" "scroll"
-        , HA.style "white-space" "normal"
-        , HA.style "margin" "20px"
-        , HA.style "font-size" "11px"
-        , HA.style "line-height" "18px"
-        ]
-        [ Markdown.Render.toHtml ExtendedMath Strings.notes
-            |> Html.map MarkdownMsg
-        ]
-
-
 dataSummary : Model -> Element msg
 dataSummary model =
     case model.timeSeries of
@@ -412,11 +354,16 @@ dataSummaryByWeek model =
             Element.el [ Font.size 14, Font.color Style.lightRed ] (text message)
 
 
-indicator : Model -> Element msg
-indicator model =
-    row indicatorStyle
-        [ el [ centerX, centerY ] (text (String.fromInt model.counter))
-        ]
+
+--- WIDGETS
+
+
+loadCountryButton : Model -> String -> Element Msg
+loadCountryButton model country =
+    button (LoadCountry country) country
+        |> Button.withSelected (model.country == Just country)
+        |> Button.withWidth (Bounded 100)
+        |> Button.toElement
 
 
 computeButton : Element Msg
@@ -441,60 +388,7 @@ getSampleButton model =
 
 
 textInput model =
-    Input.multiline [ width (px 400), height (px 533), Font.size 14 ]
-        { onChange = GotText
-        , text = model.data
-        , placeholder = Nothing
-        , label = Input.labelAbove [] (text "Enter data separated by commas")
-        , spellcheck = False
-        }
-
-
-
--- SVG
-
-
-bar total toDate =
-    bar_ (toDate / total)
-
-
-bar_ fraction =
-    let
-        h =
-            10
-
-        w =
-            180
-    in
-    Svg.svg
-        [ SA.transform "scale(1,1)"
-        , SA.transform "translate(25, 0)"
-        , SA.height <| String.fromFloat h
-        , SA.width <| String.fromFloat w
-        ]
-        [ barRect "#A00" w h 0 fraction ]
-        |> Element.html
-
-
-barRect : String -> Float -> Float -> Float -> Float -> Svg msg
-barRect color barWidth barHeight x fraction =
-    Svg.rect
-        [ SA.height <| String.fromFloat barHeight
-        , SA.width <| String.fromFloat <| fraction * barWidth
-        , SA.x <| String.fromFloat x
-        , SA.fill color
-        ]
-        []
-
-
-
--- STYLE
-
-
-indicatorStyle =
-    [ width <| px 80
-    , height <| px 80
-    , Background.color (rgb255 40 40 40)
-    , Font.color (rgb255 255 0 0)
-    , Font.size 50
-    ]
+    TextArea.input GotText model.data "Enter data separated by commas"
+        |> TextArea.withWidth 400
+        |> TextArea.withHeight 533
+        |> TextArea.toElement

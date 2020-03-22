@@ -2,6 +2,7 @@ module Widget.TextArea exposing
     ( Options
     , Size(..)
     , TextArea(..)
+    , input
     , toElement
     , withHeight
     , withWidth
@@ -18,8 +19,8 @@ type TextArea msg
     = TextArea Options (String -> msg) String String
 
 
-textArea : (String -> msg) -> String -> String -> TextArea msg
-textArea msg text label =
+input : (String -> msg) -> String -> String -> TextArea msg
+input msg text label =
     TextArea defaultOptions msg text label
 
 
@@ -74,5 +75,5 @@ withWidth width (TextArea options msg text label) =
 
 
 withHeight : Int -> TextArea msg -> TextArea msg
-withHeight width (TextArea options msg text label) =
-    TextArea { options | width = width } msg text label
+withHeight height (TextArea options msg text label) =
+    TextArea { options | height = height } msg text label
