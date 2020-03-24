@@ -38,7 +38,7 @@ init : Model
 init =
     { counter = 0
     , data = Compute.france20200225DataAsString
-    , country = Just "Sample Data"
+    , country = Just "France"
     , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
     , statistics = Nothing
     , displayPage = Data

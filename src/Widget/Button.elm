@@ -213,11 +213,31 @@ buttonAlignment alignment =
             centerX
 
 
+buttonBackgroundColor : Options -> Color
+buttonBackgroundColor options =
+    case options.selected of
+        True ->
+            options.selectedBackgroundColor
+
+        False ->
+            options.backgroundColor
+
+
+buttonFontColor : Options -> Color
+buttonFontColor options =
+    case options.selected of
+        True ->
+            options.selectedFontColor
+
+        False ->
+            options.fontColor
+
+
 primaryButtonStyle : ButtonStyleFunction msg
 primaryButtonStyle options =
     [ paddingXY 0 2
-    , Background.color options.backgroundColor
-    , Font.color options.fontColor
+    , Background.color (buttonBackgroundColor options)
+    , Font.color (buttonFontColor options)
     , Font.size 14
     , mouseDown [ Background.color (rgb255 40 40 200) ]
     ]
@@ -229,8 +249,8 @@ primaryButtonStyle options =
 outlineButtonStyle : ButtonStyleFunction msg
 outlineButtonStyle options =
     [ paddingXY 0 2
-    , Background.color options.backgroundColor
-    , Font.color options.fontColor
+    , Background.color (buttonBackgroundColor options)
+    , Font.color (buttonFontColor options)
     , Font.size 14
     , Border.solid
     , Border.color (Element.rgb255 255 0 0)
