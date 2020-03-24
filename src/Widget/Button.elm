@@ -1,5 +1,6 @@
 module Widget.Button exposing
-    ( Role(..)
+    ( Alignment(..)
+    , Role(..)
     , Size(..)
     , Variant(..)
     , button
@@ -86,10 +87,10 @@ defaultOptions =
 toElement : Button msg -> Element msg
 toElement (Button options msg label) =
     if options.selected then
-        button_ (buttobuttonStyleDispatcher options.role) options.variant options.width options.height options.selectedBackgroundColor options.selectedFontColor msg label
+        button_ (buttobuttonStyleDispatcher options.role) options msg label
 
     else
-        button_ (buttobuttonStyleDispatcher options.role) options.variant options.width options.height options.backgroundColor options.fontColor msg label
+        button_ (buttobuttonStyleDispatcher options.role) options msg label
 
 
 withRole : Role -> Button msg -> Button msg
@@ -143,13 +144,13 @@ withSelectedFontColor color (Button options msg label) =
 
 
 type alias InnerButton msg =
-    ButtonStyleFunction msg -> Variant -> Size -> Size -> Color -> Color -> msg -> String -> Element msg
+    ButtonStyleFunction msg -> Options -> msg -> String -> Element msg
 
 
 button_ : InnerButton msg
-button_ buttonStyleFunction variant w h bgColor color msg_ label =
-    row (buttonStyleFunction variant w h bgColor color)
-        [ Input.button [ paddingXY 4 4, centerX ]
+button_ buttonStyleFunction options msg_ label =
+    row (buttonStyleFunction options)
+        [ Input.button [ paddingXY 8 4, buttonAlignment options.alignment ]
             { onPress = Just msg_
             , label = el [ centerX, centerY ] (text label)
             }
@@ -187,7 +188,7 @@ prependHeight size list =
 
 
 type alias ButtonStyleFunction msg =
-    Variant -> Size -> Size -> Color -> Color -> List (Attribute msg)
+    Options -> List (Attribute msg)
 
 
 variantStyle : Variant -> Color -> List (Attribute msg)
@@ -202,30 +203,40 @@ variantStyle variant color =
             ]
 
 
+buttonAlignment : Alignment -> Attribute msg
+buttonAlignment alignment =
+    case alignment of
+        Left ->
+            alignLeft
+
+        Center ->
+            centerX
+
+
 primaryButtonStyle : ButtonStyleFunction msg
-primaryButtonStyle variant width_ height_ bgColor color =
+primaryButtonStyle options =
     [ paddingXY 0 2
-    , Background.color bgColor
-    , Font.color color
+    , Background.color options.backgroundColor
+    , Font.color options.fontColor
     , Font.size 14
     , mouseDown [ Background.color (rgb255 40 40 200) ]
     ]
-        ++ variantStyle variant color
-        |> prependWidth width_
-        |> prependWidth height_
+        ++ variantStyle options.variant options.fontColor
+        |> prependWidth options.width
+        |> prependHeight options.height
 
 
 outlineButtonStyle : ButtonStyleFunction msg
-outlineButtonStyle variant width_ height_ bgColor color =
+outlineButtonStyle options =
     [ paddingXY 0 2
-    , Background.color bgColor
-    , Font.color color
+    , Background.color options.backgroundColor
+    , Font.color options.fontColor
     , Font.size 14
     , Border.solid
     , Border.color (Element.rgb255 255 0 0)
     , Border.width 2
     , mouseDown [ Background.color (rgb255 40 40 200) ]
     ]
-        ++ variantStyle variant color
-        |> prependWidth width_
-        |> prependWidth height_
+        ++ variantStyle options.variant options.fontColor
+        |> prependWidth options.width
+        |> prependHeight options.height

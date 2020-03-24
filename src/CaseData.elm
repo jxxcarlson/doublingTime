@@ -46,11 +46,12 @@ france =
         , 10995
         , 12612
         , 14459
+        , 16685
         ]
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_outbreak_in_France#Timeline_2"
     , sourceName = "Wikipedia"
     , country = "France"
-    , note = "Feb 25 to Mar 21, 2020"
+    , note = "Feb 25 to Mar 22, 2020"
     , startMonth = 2
     , startDay = 25
     }
@@ -89,11 +90,13 @@ italy =
         , 41035
         , 47021
         , 53578
+        , 59138
+        , 63927
         ]
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy"
     , sourceName = "Wikipedia"
     , country = "Italy"
-    , note = "Feb 21 to Mar 21, 2020"
+    , note = "Feb 21 to Mar 23, 2020"
     , startMonth = 2
     , startDay = 21
     }
@@ -164,11 +167,13 @@ southKorea =
         , 8652
         , 8799
         , 8897
+        , 8961
+        , 9037
         ]
     , sourceName = "Wikipedia"
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_South_Korea"
     , country = "South Korea"
-    , note = "Jan 20 to Mar 21, 2020"
+    , note = "Jan 20 to Mar 23, 2020"
     , startMonth = 1
     , startDay = 20
     }
@@ -201,11 +206,13 @@ usa =
         , 11980
         , 17325
         , 23623
+        , 32341
+        , 42752
         ]
     , sourceName = "Wikipedia"
     , sourceLink = "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_States"
     , country = "USA"
-    , note = "Feb 27 to Mar 21, 2020"
+    , note = "Feb 27 to Mar 23, 2020"
     , startMonth = 2
     , startDay = 27
     }

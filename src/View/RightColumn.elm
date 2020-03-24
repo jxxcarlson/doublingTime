@@ -14,7 +14,7 @@ rightColumn model =
             0.9
 
         rightColumHeader =
-            el [ Font.bold, Font.size 18 ] (text "Covid-19 Data by Country")
+            el [ Font.bold, Font.size 18, paddingXY 0 12 ] (text "Coronavirus Data by Country")
     in
     column
         [ alignTop
@@ -22,7 +22,7 @@ rightColumn model =
         , padding 20
         , Font.size 14
         , width (px 400)
-        , height (px 673)
+        , height (px 680)
         , spacing 10
         ]
         (rightColumHeader :: List.map (casesForCountry model) CaseData.cases)
@@ -43,6 +43,7 @@ casesForCountry model caseData =
 loadCountryButton : Model -> String -> Element Msg
 loadCountryButton model country =
     button (LoadCountry country) country
+        |> Button.withAlignment Button.Left
         |> Button.withSelected (model.country == Just country)
         |> Button.withWidth (Bounded 100)
         |> Button.toElement

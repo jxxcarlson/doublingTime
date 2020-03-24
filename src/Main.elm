@@ -98,6 +98,6 @@ mainColumn : Model -> Element Msg
 mainColumn model =
     row [ spacing 20, paddingXY 40 40 ]
         [ leftColumn model
-        , middleColumn model
         , rightColumn model
+        , middleColumn model
         ]

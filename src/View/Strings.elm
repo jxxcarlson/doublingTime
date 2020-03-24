@@ -88,9 +88,9 @@ To compute the doubling time for a data set,
 simply enter the numbers in the panel on the
 right, separated by commas, then press the button **Doubling Time.**
 To experiment with the sample discussed below, press
-the **Sample data** button.  Data for the
-countries listed on the right are obtained by
-pushing the corresponding button (France, Italy, etc.)
+the **Sample data** button.  To see data for the
+countries listed in the middle column, push
+ the corresponding button (France, Italy, etc.)
  For a different view
 of the data, press the **Data** tab above.
 

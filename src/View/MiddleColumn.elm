@@ -101,7 +101,7 @@ clearButton : Element Msg
 clearButton =
     button Clear "Clear"
         |> Button.withStyle Button.Rounded
-        |> Button.withWidth (Bounded 80)
+        |> Button.withWidth (Bounded 65)
         |> Button.toElement
 
 
