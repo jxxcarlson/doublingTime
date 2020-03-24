@@ -92,6 +92,7 @@ dataSummaryByWeek model =
 computeButton : Element Msg
 computeButton =
     button Compute "Doubling time"
+        |> Button.withStyle Button.Rounded
         |> Button.withWidth (Bounded 120)
         |> Button.toElement
 
@@ -99,6 +100,7 @@ computeButton =
 clearButton : Element Msg
 clearButton =
     button Clear "Clear"
+        |> Button.withStyle Button.Rounded
         |> Button.withWidth (Bounded 80)
         |> Button.toElement
 
@@ -106,6 +108,7 @@ clearButton =
 getSampleButton : Model -> Element Msg
 getSampleButton model =
     button SampleData "Sample Data"
+        |> Button.withStyle Button.Rounded
         |> Button.withWidth (Bounded 120)
         |> Button.toElement
 
