@@ -19,7 +19,7 @@ viewAbout model =
 viewNotes model =
     Html.div
         viewStyle
-        [ Markdown.Render.toHtml ExtendedMath Strings.notes
+        [ Markdown.Render.toHtml ExtendedMath Strings.graphs
             |> Html.map MarkdownMsg
         ]
 

@@ -141,7 +141,7 @@ leftColumn model =
             Data ->
                 dataView model
 
-            Notes ->
+            Graphs ->
                 Text.viewNotes model |> Element.html
 
             Articles ->
@@ -160,8 +160,8 @@ header model =
             |> Button.withSelected (model.displayPage == About)
             |> Button.withWidth (Bounded 80)
             |> Button.toElement
-        , button (SetDisplay Notes) "Notes"
-            |> Button.withSelected (model.displayPage == Notes)
+        , button (SetDisplay Graphs) "Graphs"
+            |> Button.withSelected (model.displayPage == Graphs)
             |> Button.withWidth (Bounded 80)
             |> Button.toElement
         , button (SetDisplay Articles) "Articles"

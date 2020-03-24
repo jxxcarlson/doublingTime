@@ -30,7 +30,7 @@ type Msg
 type DisplayPage
     = About
     | Data
-    | Notes
+    | Graphs
     | Articles
 
 

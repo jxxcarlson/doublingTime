@@ -1,9 +1,14 @@
-module View.Strings exposing (articles, notes, text)
+module View.Strings exposing (articles, graphs, text)
+
+--![xx](http://jxxcarlson.s3.amazonaws.com/coronavirus-cumulative-deaths-ft.png)
+--FT.com
+--
+--For the lastest, take a look at the current [Financial Times article](https://www.ft.com/coronavirus-latest)
 
 
-notes =
+graphs =
     """
-## Notes
+
 
 ### Cumulative Coronavirus Deaths
 
@@ -11,16 +16,15 @@ In the graph below, the logarithm of the number of deaths is plotted
 against time.  A quantity that grows exponentially will therefore
 appear as a straight line.
 
-![xx](http://jxxcarlson.s3.amazonaws.com/coronavirus-cumulative-deaths-ft.png)
-FT.com
+![NYT](https://static01.nyt.com/images/2020/03/20/upshot/coronavirus-deaths-by-country-1584750820316/coronavirus-deaths-by-country-1584750820316-threeByTwoMediumAt2X-v4.png?quality=75&auto=webp&disable=upscale&width=1100)
+[Source: NYT](https://static01.nyt.com/images/2020/03/20/upshot/coronavirus-deaths-by-country-1584750820316/coronavirus-deaths-by-country-1584750820316-threeByTwoMediumAt2X-v4.png?quality=75&auto=webp&disable=upscale&width=1100)
 
-For the lastest, take a look at the current [Financial Times article](https://www.ft.com/coronavirus-latest)
 
-### The Case of South Korea
+### Remarks
 
-It is instructive to look at the course of
+**1.** It is instructive to look at the course of
 the pandemic in South Korea
-(see button in right column).   Testing
+(see graph above, or press button in right column).   Testing
 and other public health measures
 began early. For four weeks, there
 were just a few cases: only
@@ -34,7 +38,8 @@ now increasing at about 1% per day.
 It appears that South Korea     is gaining
 control of the epidemic.
 
-
+**2.** The slope of the line for the US (in red) is
+alarming.
 
 
 """
