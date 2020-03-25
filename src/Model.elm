@@ -1,5 +1,6 @@
 module Model exposing (DisplayPage(..), Model, Msg(..), init)
 
+import CaseData
 import Compute
 import Markdown.Render exposing (MarkdownMsg)
 import Stat exposing (Statistics)
@@ -36,10 +37,14 @@ type DisplayPage
 
 init : Model
 init =
+    let
+        data =
+            CaseData.france.cases |> List.map String.fromInt |> String.join ", "
+    in
     { counter = 0
-    , data = Compute.france20200225DataAsString
+    , data = data
     , country = Just "France"
-    , timeSeries = Compute.timeSeries Compute.france20200225DataAsString
+    , timeSeries = Compute.timeSeries data
     , statistics = Nothing
     , displayPage = Data
     , monthOfFirstCase = 0
