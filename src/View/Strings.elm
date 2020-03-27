@@ -19,6 +19,12 @@ appear as a straight line.
 ![NYT](https://static01.nyt.com/images/2020/03/20/upshot/coronavirus-deaths-by-country-1584750820316/coronavirus-deaths-by-country-1584750820316-threeByTwoMediumAt2X-v4.png?quality=75&auto=webp&disable=upscale&width=1100)
 [Source: NYT](https://static01.nyt.com/images/2020/03/20/upshot/coronavirus-deaths-by-country-1584750820316/coronavirus-deaths-by-country-1584750820316-threeByTwoMediumAt2X-v4.png?quality=75&auto=webp&disable=upscale&width=1100)
 
+Below: a deeply alarming graph with doubling times by state:
+
+![PBS](https://pbs.twimg.com/media/EUEzXrBWoAERPtP?format=jpg&name=medium)
+
+[See enlarged graph](https://pbs.twimg.com/media/EUEzXrBWoAERPtP?format=jpg&name=medium)
+
 
 ### Remarks
 
